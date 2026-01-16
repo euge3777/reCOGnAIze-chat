@@ -1,0 +1,153 @@
+[
+  {
+    "type": "cognitive_domain",
+    "domain": "processing_speed",
+    "definition": "How quickly a person can take in information, process it, and respond.",
+    "common_impairment_signs": [
+      "takes longer to complete simple tasks",
+      "slow reaction time",
+      "difficulty keeping up with fast conversations or instructions"
+    ],
+    "linked_conditions": [
+      "vascular cognitive impairment (VCI)",
+      "white matter hyperintensities",
+      "subcortical ischemic changes"
+    ],
+    "measured_by_tasks": [
+      "Symbol Matching (ReCOGnAIze)",
+      "Trail Making - completion time"
+    ],
+    "biological_basis": "Slowed processing speed in VCI is often driven by cerebrovascular damage to frontal–subcortical circuits and disrupted white-matter tracts.",
+    "associated_health_goals": [
+      "support vascular health",
+      "support brain function",
+      "maintain daily functioning"
+    ],
+    "source_note": "ReCOGnAIze development data show processing speed and response-time variability as key VCI markers.",
+    "citation": ":contentReference[oaicite:1]{index=1}"
+  },
+  {
+    "type": "cognitive_domain",
+    "domain": "executive_function",
+    "definition": "The set of skills that help with planning, organizing, switching between tasks, and staying on track.",
+    "common_impairment_signs": [
+      "difficulty switching rules or tasks",
+      "trouble following multi-step instructions",
+      "disorganized or inefficient problem solving"
+    ],
+    "linked_conditions": [
+      "VCI",
+      "mild cognitive impairment (MCI)",
+      "frontal network disruption"
+    ],
+    "measured_by_tasks": [
+      "Trail Making with alternating sequences",
+      "complex multi-step game elements (e.g., Grocery Shopping planning)"
+    ],
+    "biological_basis": "Executive skills rely on frontal–subcortical loops that are vulnerable to vascular injury, causing problems even when memory is relatively preserved.",
+    "associated_health_goals": [
+      "support brain function",
+      "support everyday independence"
+    ],
+    "source_note": "BIOCIS analysis found greater executive deficits in VCI compared to non-vascular cognitive impairment.",
+    "citation": ":contentReference[oaicite:2]{index=2}"
+  },
+  {
+    "type": "cognitive_domain",
+    "domain": "attention_and_impulse_control",
+    "definition": "Ability to stay focused, ignore distractions, and stop oneself from reacting too quickly.",
+    "common_impairment_signs": [
+      "pressing/swiping even when they know they should wait",
+      "getting distracted mid-task",
+      "more mistakes when tasks get faster"
+    ],
+    "linked_conditions": [
+      "VCI",
+      "mild behavioral impairment (impulse dyscontrol)",
+      "white-matter disruption"
+    ],
+    "measured_by_tasks": [
+      "Airplane Go/No-Go task",
+      "response inhibition measures"
+    ],
+    "biological_basis": "Impulse dyscontrol in high vascular burden is linked to disrupted inhibitory pathways and white-matter lesions.",
+    "associated_health_goals": [
+      "support attention and focus",
+      "support vascular health"
+    ],
+    "source_note": "Airplane go/no-go in ReCOGnAIze targets inhibitory control, a common issue in patients with high WMH burden.",
+    "citation": ":contentReference[oaicite:3]{index=3}"
+  },
+  {
+    "type": "cognitive_domain",
+    "domain": "memory",
+    "definition": "Ability to learn, store, and recall information over short and longer delays.",
+    "common_impairment_signs": [
+      "forgetting short shopping lists",
+      "repeating questions",
+      "needing frequent prompts"
+    ],
+    "linked_conditions": [
+      "MCI due to mixed pathology",
+      "age-related cognitive decline"
+    ],
+    "measured_by_tasks": [
+      "Grocery Shopping list recall",
+      "delayed recall tasks"
+    ],
+    "biological_basis": "Memory can be secondarily affected in VCI, especially when vascular injury co-exists with neurodegenerative processes.",
+    "associated_health_goals": [
+      "support memory",
+      "support brain health with age"
+    ],
+    "source_note": "ReCOGnAIze composite score detects MCI more accurately than MoCA.",
+    "citation": ":contentReference[oaicite:4]{index=4}"
+  },
+  {
+    "type": "vascular_profile",
+    "section": "vascular_health_and_brain",
+    "definition": "Vascular health refers to the body's ability to maintain healthy blood vessels and good blood flow, which is critical for brain function.",
+    "risk_factors": [
+      {
+        "code": "high_blood_pressure",
+        "label": "High blood pressure",
+        "brief_effect": "Can make blood vessels narrow and stiff, reducing blood flow to the brain."
+      },
+      {
+        "code": "high_cholesterol",
+        "label": "High cholesterol",
+        "brief_effect": "Can cause plaque build-up that clogs arteries, limiting blood flow."
+      },
+      {
+        "code": "obesity",
+        "label": "Obesity",
+        "brief_effect": "Increases blood pressure and cholesterol, and promotes inflammation."
+      },
+      {
+        "code": "diabetes",
+        "label": "Diabetes",
+        "brief_effect": "Damages blood vessels and raises blood sugar, harming vessel walls."
+      },
+      {
+        "code": "smoking",
+        "label": "Smoking",
+        "brief_effect": "Harms the lining of blood vessels, raises blood pressure, and reduces oxygen delivery."
+      }
+    ],
+    "brain_impact_summary": "All of these factors can reduce blood flow to the brain and may increase the risk of memory and cognitive problems, including stroke and vascular cognitive impairment.",
+    "lifestyle_recommendations": [
+      "Quit smoking",
+      "Control blood pressure",
+      "Reduce salt intake",
+      "Do regular cardio exercise",
+      "Include healthy fats",
+      "Maintain a healthy weight",
+      "Limit alcohol consumption",
+      "Attend regular medical check-ups",
+      "Eat more fibre",
+      "Manage stress"
+    ],
+    "disclaimer": "This information is educational and does not diagnose any disease. Results should be interpreted only by a qualified healthcare professional.",
+    "citation": ":contentReference[oaicite:5]{index=5}"
+  }
+]

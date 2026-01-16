@@ -1,0 +1,927 @@
+[
+  {
+    "rule_id": "adult_50plus_high_vascular_or_cognitive_risk_female",
+    "applicable_if": {
+      "min_age": 50,
+      "sex": "female",
+      "vascular_risk_factors_any_of": [
+        "high_blood_pressure",
+        "high_cholesterol",
+        "diabetes",
+        "obesity",
+        "smoking"
+      ],
+      "cognitive_concern_any_of": [
+        "memory_issues",
+        "mild_cognitive_impairment",
+        "vascular_cognitive_impairment"
+      ]
+    },
+    "primary_goal": [
+      "support heart and vascular health",
+      "support brain function and memory",
+      "support eye and bone health in aging"
+    ],
+    "recommended_products": [
+      {
+        "product_key": "centrum_silver_women_50_plus",
+        "display_name": "Centrum Silver Women 50+",
+        "priority": "primary",
+        "rationale": "Specially formulated for women 50+ to help support heart health, brain function, healthy eyes, and strong bones.",
+        "ingredients": "Vitamin A, Vitamin C, Vitamin D3, Vitamin E, Thiamin, Riboflavin, Niacin, Vitamin B6, Folic Acid, Vitamin B12, Biotin, Pantothenic Acid, Calcium, Iron, Phosphorus, Iodine, Magnesium, Zinc, Selenium, Copper, Manganese, Chromium, Molybdenum, Chloride, Potassium, Boron, Nickel, Silicon, Tin, Vanadium, Lycopene, Lutein",
+        "dosage": "Take 1 tablet daily with food",
+        "when_to_take": "Take with breakfast or lunch for best absorption",
+        "evidence_note": "In the COSMOS-Web trial, older adults taking a Centrum Silver multivitamin had better episodic memory than those on placebo over 3 years."
+      },
+      {
+        "product_key": "centrum_multigummies_women_50_plus",
+        "display_name": "Centrum MultiGummies Women 50+",
+        "priority": "alternative",
+        "rationale": "A tasty multivitamin gummy for women 50+ to support heart health, brain function, healthy eyes, and bone strength.",
+        "ingredients": "Vitamin A, Vitamin C, Vitamin D3, Vitamin E, Thiamin, Riboflavin, Niacin, Vitamin B6, Folic Acid, Vitamin B12, Biotin, Pantothenic Acid, Calcium, Phosphorus, Iodine, Magnesium, Zinc, Selenium, Copper, Manganese, Chromium, Molybdenum",
+        "dosage": "Take 2 gummies daily with food",
+        "when_to_take": "Can be taken with any meal, gummies are easier to digest"
+      }
+    ],
+    "safety_notes": [
+      "This is a general wellness suggestion, not a treatment for vascular disease or dementia.",
+      "Anyone with high blood pressure, high cholesterol, diabetes, or on prescription medicines should speak with a doctor or pharmacist before starting any supplement."
+    ]
+  },
+  {
+    "rule_id": "adult_50plus_high_vascular_or_cognitive_risk_male",
+    "applicable_if": {
+      "min_age": 50,
+      "sex": "male",
+      "vascular_risk_factors_any_of": [
+        "high_blood_pressure",
+        "high_cholesterol",
+        "diabetes",
+        "obesity",
+        "smoking"
+      ],
+      "cognitive_concern_any_of": [
+        "memory_issues",
+        "mild_cognitive_impairment",
+        "vascular_cognitive_impairment"
+      ]
+    },
+    "primary_goal": [
+      "support heart and vascular health",
+      "support brain function and memory",
+      "support eye and muscle health in aging"
+    ],
+    "recommended_products": [
+      {
+        "product_key": "centrum_silver_men_50_plus",
+        "display_name": "Centrum Silver Men 50+",
+        "priority": "primary",
+        "rationale": "Specially formulated for men 50+ to help support heart health, brain function, healthy eyes, and muscle function.",
+        "ingredients": "Vitamin A, Vitamin C, Vitamin D3, Vitamin E, Thiamin, Riboflavin, Niacin, Vitamin B6, Folic Acid, Vitamin B12, Biotin, Pantothenic Acid, Calcium, Phosphorus, Iodine, Magnesium, Zinc, Selenium, Copper, Manganese, Chromium, Molybdenum, Chloride, Potassium, Boron, Nickel, Silicon, Tin, Vanadium, Lycopene, Lutein",
+        "dosage": "Take 1 tablet daily with food",
+        "when_to_take": "Take with breakfast or lunch for best absorption",
+        "evidence_note": "Centrum Silver was the multivitamin used in a large RCT that showed improved memory vs placebo in older adults."
+      },
+      {
+        "product_key": "centrum_multigummies_men_50_plus",
+        "display_name": "Centrum MultiGummies Men 50+",
+        "priority": "alternative",
+        "rationale": "A great-tasting multivitamin gummy tailored for men 50+ to help support heart health, brain function, healthy eyes, and muscle function.",
+        "ingredients": "Vitamin A, Vitamin C, Vitamin D3, Vitamin E, Thiamin, Riboflavin, Niacin, Vitamin B6, Folic Acid, Vitamin B12, Biotin, Pantothenic Acid, Calcium, Phosphorus, Iodine, Magnesium, Zinc, Selenium, Copper, Manganese, Chromium, Molybdenum",
+        "dosage": "Take 2 gummies daily with food",
+        "when_to_take": "Can be taken with any meal"
+      }
+    ],
+    "safety_notes": [
+      "Not a substitute for blood pressure, cholesterol or diabetes medication.",
+      "Men with vascular conditions should confirm supplement choices with their clinician, especially if taking multiple medicines."
+    ]
+  },
+  {
+    "rule_id": "adult_65plus_memory_concerns_any_sex",
+    "applicable_if": {
+      "min_age": 65,
+      "sex": "any",
+      "cognitive_concern_any_of": [
+        "memory_issues",
+        "mild_cognitive_impairment",
+        "age_related_cognitive_decline"
+      ]
+    },
+    "primary_goal": [
+      "support healthy aging and brain function",
+      "maintain cognitive function",
+      "support memory and mental clarity"
+    ],
+    "recommended_products": [
+      {
+        "product_key": "centrum_silver_adults_50_plus",
+        "display_name": "Centrum Silver Adults 50+",
+        "priority": "primary",
+        "rationale": "A daily multivitamin formulated for adults 50+ to help promote heart health, brain function, and eye health.",
+        "ingredients": "Vitamin A, Vitamin C, Vitamin D3, Vitamin E, Thiamin, Riboflavin, Niacin, Vitamin B6, Folic Acid, Vitamin B12, Biotin, Pantothenic Acid, Calcium, Iron, Phosphorus, Iodine, Magnesium, Zinc, Selenium, Copper, Manganese, Chromium, Molybdenum, Chloride, Potassium, Boron, Nickel, Silicon, Tin, Vanadium, Lycopene, Lutein",
+        "dosage": "Take 1 tablet daily with food",
+        "when_to_take": "Take with breakfast or lunch for optimal absorption",
+        "evidence_note": "Formulated with nutrients that support cognitive function in older adults"
+      },
+      {
+        "product_key": "centrum_multigummies_adults_50_plus",
+        "display_name": "Centrum MultiGummies Adults 50+",
+        "priority": "alternative",
+        "rationale": "A delicious gummy designed for older adults to help support heart health, brain function, and bone health.",
+        "ingredients": "Vitamin A, Vitamin C, Vitamin D3, Vitamin E, Thiamin, Riboflavin, Niacin, Vitamin B6, Folic Acid, Vitamin B12, Biotin, Pantothenic Acid, Calcium, Phosphorus, Iodine, Magnesium, Zinc, Selenium, Copper, Manganese, Chromium, Molybdenum",
+        "dosage": "Take 2 gummies daily",
+        "when_to_take": "Can be taken with or without food"
+      }
+    ],
+    "safety_notes": [
+      "Memory concerns should be evaluated by a healthcare professional.",
+      "This supplement supports general brain health but is not a treatment for dementia or Alzheimer's disease."
+    ]
+  },
+  {
+    "rule_id": "younger_adult_focus_and_mental_performance",
+    "applicable_if": {
+      "min_age": 18,
+      "max_age": 49,
+      "sex": "any",
+      "primary_user_goal_any_of": [
+        "support_focus",
+        "mental_performance"
+      ],
+      "cognitive_concern_any_of": [
+        "attention_deficit",
+        "focus_issues",
+        "high_study_or_workload"
+      ]
+    },
+    "primary_goal": [
+      "support mental focus and daily energy",
+      "provide base nutrients plus caffeine for alertness",
+      "enhance cognitive performance"
+    ],
+    "recommended_products": [
+      {
+        "product_key": "centrum_multigummies_multi_mental_focus",
+        "display_name": "Centrum MultiGummies Multi + Mental Focus",
+        "priority": "primary",
+        "rationale": "A delicious fruit-flavored daily multivitamin specially designed to support mental focus with caffeine from green tea.",
+        "ingredients": "Vitamin A, Vitamin C, Vitamin D3, Vitamin E, Thiamin, Riboflavin, Niacin, Vitamin B6, Folic Acid, Vitamin B12, Biotin, Pantothenic Acid, Calcium, Phosphorus, Iodine, Magnesium, Zinc, Selenium, Copper, Manganese, Chromium, Molybdenum, Green Tea Extract (providing 60mg caffeine)",
+        "dosage": "Take 2 gummies daily",
+        "when_to_take": "Take in the morning or early afternoon to avoid caffeine affecting sleep",
+        "evidence_note": "Contains caffeine from green tea to support mental alertness and focus"
+      },
+      {
+        "product_key": "centrum_adults",
+        "display_name": "Centrum Adults",
+        "priority": "alternative",
+        "rationale": "A daily multivitamin formulated for adults to support energy, immunity, and metabolism as part of general wellness.",
+        "ingredients": "Vitamin A, Vitamin C, Vitamin D3, Vitamin E, Thiamin, Riboflavin, Niacin, Vitamin B6, Folic Acid, Vitamin B12, Biotin, Pantothenic Acid, Calcium, Iron, Phosphorus, Iodine, Magnesium, Zinc, Selenium, Copper, Manganese, Chromium, Molybdenum, Chloride, Potassium, Boron, Nickel, Silicon, Tin, Vanadium",
+        "dosage": "Take 1 tablet daily with food",
+        "when_to_take": "Take with breakfast or lunch"
+      }
+    ],
+    "safety_notes": [
+      "Contains caffeine, so users should avoid excess caffeine from other sources.",
+      "Not a treatment for diagnosed attention disorders or mood disorders."
+    ]
+  },
+  {
+    "rule_id": "adult_on_glp1_with_weight_or_diabetes_concern",
+    "applicable_if": {
+      "min_age": 18,
+      "sex": "any",
+      "on_glp1_medication": true
+    },
+    "primary_goal": [
+      "help fill potential nutrient gaps that can occur with reduced food intake on GLP-1 therapy",
+      "support energy and metabolism"
+    ],
+    "recommended_products": [
+      {
+        "product_key": "centrum_nutrient_replenish_glp1",
+        "display_name": "Centrum Nutrient Replenish – for GLP-1 users",
+        "priority": "primary",
+        "rationale": "Comprehensive multivitamin with high-potency vitamins A, C, D, E, B12 and zinc, designed to fill potential nutrient gaps in GLP-1 users and support daily energy and metabolism.",
+        "ingredients": "High-potency Vitamin A, Vitamin C, Vitamin D3, Vitamin E, Vitamin B12, Zinc, plus other essential vitamins and minerals",
+        "dosage": "Take 1 mini tablet daily",
+        "when_to_take": "Take with food to maximize absorption",
+        "evidence_note": "Specifically formulated for people on GLP-1 medications who may have reduced food intake"
+      }
+    ],
+    "safety_notes": [
+      "GLP-1 users should ask their prescriber before starting any supplement.",
+      "This product supports general nutrition and does not replace medical monitoring of blood sugar or weight."
+    ]
+  },
+  {
+    "rule_id": "pregnancy_or_trying_to_conceive",
+    "applicable_if": {
+      "sex": "female",
+      "life_stage_any_of": [
+        "planning_pregnancy",
+        "pregnant"
+      ]
+    },
+    "primary_goal": [
+      "support fetal neural tube development",
+      "meet increased micronutrient needs in pregnancy"
+    ],
+    "recommended_products": [
+      {
+        "product_key": "centrum_maternal_prenatal_gummies",
+        "display_name": "Centrum Maternal Health PreNatal Multivitamin Gummies",
+        "priority": "primary",
+        "rationale": "A daily multivitamin gummy that supports women before and during pregnancy. With folic acid, DHA, and 10 other essential nutrients.",
+        "ingredients": "Folic Acid, DHA, Iron, Vitamin D3, Vitamin B6, Vitamin B12, Vitamin C, Calcium, Iodine, Zinc, plus other essential nutrients",
+        "dosage": "Take 2 gummies daily",
+        "when_to_take": "Take with food, preferably with breakfast",
+        "evidence_note": "Contains folic acid for neural tube development and DHA for brain development"
+      },
+      {
+        "product_key": "centrum_maternal_morning_sickness_relief",
+        "display_name": "Centrum Maternal Health Morning Sickness Relief Gummies",
+        "priority": "supplementary",
+        "rationale": "A gummy supplement formulated with Vitamin B6 to help moms-to-be find relief from occasional nausea and morning sickness.",
+        "ingredients": "Vitamin B6, Ginger Extract",
+        "dosage": "Take as directed on package",
+        "when_to_take": "Take as needed for morning sickness relief"
+      }
+    ],
+    "safety_notes": [
+      "Pregnant users must confirm any supplement choice with their obstetrician or midwife.",
+      "This rule is about nutritional support and not about treating pregnancy complications."
+    ]
+  },
+  {
+    "rule_id": "menopause_with_symptoms",
+    "applicable_if": {
+      "sex": "female",
+      "life_stage_any_of": [
+        "perimenopause",
+        "menopause"
+      ],
+      "symptom_any_of": [
+        "hot_flashes",
+        "night_sweats",
+        "sleep_difficulty",
+        "mood_changes",
+        "brain_fog"
+      ]
+    },
+    "primary_goal": [
+      "support quality of life during menopause",
+      "support sleep and cognitive function",
+      "help manage hot flashes and mood"
+    ],
+    "recommended_products": [
+      {
+        "product_key": "centrum_menopause_complete_hot_flash_support",
+        "display_name": "Centrum Menopause Support – Complete Multivitamin + Hot Flash Support",
+        "priority": "primary",
+        "rationale": "A complete daily multivitamin with hormone-free geniVida®, clinically studied to help minimize the frequency and duration of hot flashes.",
+        "ingredients": "Complete multivitamin blend plus geniVida® (soy isoflavones)",
+        "dosage": "Take as directed on package",
+        "when_to_take": "Take with food",
+        "evidence_note": "Contains clinically studied geniVida® for hot flash support"
+      },
+      {
+        "product_key": "centrum_menopause_restful_sleep",
+        "display_name": "Centrum Menopause Support – Restful Sleep",
+        "priority": "alternative",
+        "rationale": "A hormone-free and melatonin-free formula that helps support sleep quality with clinically studied DailyZz™ and geniVida® to help minimize hot flashes at night.",
+        "ingredients": "DailyZz™, geniVida® (soy isoflavones), sleep-supporting nutrients",
+        "dosage": "Take as directed before bedtime",
+        "when_to_take": "Take 30-60 minutes before bedtime"
+      },
+      {
+        "product_key": "centrum_menopause_clear_mind_calm_mood",
+        "display_name": "Centrum Menopause Support – Clear Mind & Calm Mood",
+        "priority": "supplementary",
+        "rationale": "A hormone-free and caffeine-free formula that supports mental alertness, attention, focus, and calmness with clinically studied enXtra® and KSM-66® Ashwagandha.",
+        "ingredients": "enXtra®, KSM-66® Ashwagandha, focus-supporting nutrients",
+        "dosage": "Take as directed on package",
+        "when_to_take": "Can be taken anytime during the day"
+      }
+    ],
+    "safety_notes": [
+      "Menopause support supplements are not a replacement for medical evaluation of severe symptoms.",
+      "Users should discuss supplement plans with a healthcare professional, especially if using other hormonal or non-hormonal therapies."
+    ]
+  },
+  {
+    "rule_id": "general_healthy_adult_18to49",
+    "applicable_if": {
+      "min_age": 18,
+      "max_age": 49,
+      "sex": "any",
+      "vascular_risk_factors_any_of": [],
+      "cognitive_concern_any_of": [],
+      "primary_user_goal_any_of": [
+        "general_health",
+        "nutrient_gap_cover"
+      ]
+    },
+    "primary_goal": [
+      "provide broad nutritional backup",
+      "support everyday energy, immunity, and metabolism"
+    ],
+    "recommended_products": [
+      {
+        "product_key": "centrum_adults",
+        "display_name": "Centrum Adults",
+        "priority": "primary",
+        "rationale": "A daily multivitamin formulated for adults to support energy, immunity, and metabolism.",
+        "ingredients": "23 essential vitamins and minerals including Vitamins A, C, D, E, B-vitamins, Iron, Calcium, Magnesium, Zinc",
+        "dosage": "Take 1 tablet daily with food",
+        "when_to_take": "Take with breakfast or lunch for best absorption"
+      },
+      {
+        "product_key": "centrum_multigummies_adults",
+        "display_name": "Centrum MultiGummies Adults",
+        "priority": "alternative",
+        "rationale": "A tasty multivitamin gummy available in assorted natural fruit flavors, contains no artificial sweeteners, and supports energy, immunity, and metabolism.",
+        "ingredients": "Essential vitamins and minerals in gummy form, no artificial sweeteners",
+        "dosage": "Take 2 gummies daily",
+        "when_to_take": "Can be taken with or without food"
+      }
+    ],
+    "safety_notes": [
+      "Healthy adults do not always need a multivitamin if diet is balanced, so advice from a healthcare professional or dietitian is helpful.",
+      "This rule is purely about general wellness support."
+    ]
+  },
+  {
+    "rule_id": "gender_specific_adults",
+    "applicable_if": {
+      "min_age": 18,
+      "max_age": 49,
+      "sex_either": ["male", "female"],
+      "primary_user_goal_any_of": [
+        "gender_specific_nutrition",
+        "general_health"
+      ]
+    },
+    "primary_goal": [
+      "provide gender-specific nutritional support",
+      "address unique nutritional needs by gender"
+    ],
+    "recommended_products": [
+      {
+        "product_key": "centrum_men",
+        "display_name": "Centrum Men",
+        "priority": "primary",
+        "applicable_gender": "male",
+        "rationale": "A daily multivitamin formulated for men to support metabolism, immunity, energy, and muscle health.",
+        "ingredients": "Vitamins and minerals tailored for men's needs, with higher levels of certain B-vitamins and minerals",
+        "dosage": "Take 1 tablet daily with food",
+        "when_to_take": "Take with breakfast or lunch"
+      },
+      {
+        "product_key": "centrum_women",
+        "display_name": "Centrum Women",
+        "priority": "primary",
+        "applicable_gender": "female",
+        "rationale": "A daily multivitamin formulated for women to support energy, immunity, metabolism, and healthy appearance.",
+        "ingredients": "Vitamins and minerals tailored for women's needs, including iron and calcium",
+        "dosage": "Take 1 tablet daily with food",
+        "when_to_take": "Take with breakfast or lunch"
+      }
+    ],
+    "safety_notes": [
+      "Gender-specific formulations address different nutritional needs.",
+      "Consult healthcare provider if you have specific health conditions."
+    ]
+  },
+  {
+    "rule_id": "adult_50plus_high_vascular_or_cognitive_risk_male",
+    "applicable_if": {
+      "min_age": 50,
+      "sex": "male",
+      "vascular_risk_factors_any_of": [
+        "high_blood_pressure",
+        "high_cholesterol",
+        "diabetes",
+        "obesity",
+        "smoking"
+      ],
+      "cognitive_concern_any_of": [
+        "memory_issues",
+        "mild_cognitive_impairment",
+        "vascular_cognitive_impairment"
+      ]
+    },
+    "primary_goal": [
+      "support heart and vascular health",
+      "support brain function and memory",
+      "support eye and muscle health in aging"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_silver_men_50_plus",
+      "display_name": "Centrum Silver Men 50+",
+      "rationale": "Specially formulated for men 50+ to help support heart health, brain function, healthy eyes, and muscle function.",
+      "evidence_note": "Centrum Silver was the multivitamin used in a large RCT that showed improved memory vs placebo in older adults.",
+      "citations": [
+        ":contentReference[oaicite:10]{index=10}",
+        ":contentReference[oaicite:11]{index=11}"
+      ]
+    },
+    "alternative_products": [
+      {
+        "product_key": "centrum_silver_adults_50_plus",
+        "display_name": "Centrum Silver Adults 50+",
+        "when_to_use": "When a gender-neutral 50+ formula is preferred."
+      }
+    ],
+    "safety_notes": [
+      "Not a substitute for blood pressure, cholesterol or diabetes medication.",
+      "Men with vascular conditions should confirm supplement choices with their clinician, especially if taking multiple medicines."
+    ]
+  },
+  {
+    "rule_id": "adult_50plus_moderate_vascular_risk_no_cognitive_concern_any_sex",
+    "applicable_if": {
+      "min_age": 50,
+      "sex": "any",
+      "vascular_risk_factors_any_of": [
+        "high_blood_pressure",
+        "high_cholesterol",
+        "diabetes",
+        "obesity",
+        "smoking"
+      ],
+      "cognitive_concern_any_of": [],
+      "report_goal_any_of": [
+        "preventive_brain_support",
+        "general_vascular_health_support"
+      ]
+    },
+    "primary_goal": [
+      "provide broad micronutrient coverage for older adults",
+      "support heart, brain, eye and immune health as part of a wider vascular health plan"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_silver_adults_50_plus",
+      "display_name": "Centrum Silver Adults 50+",
+      "rationale": "Daily multivitamin for adults 50+ designed to promote heart health, brain function, and eye health.",
+      "citations": [
+        ":contentReference[oaicite:12]{index=12}"
+      ]
+    },
+    "alternative_products": [],
+    "safety_notes": [
+      "Lifestyle changes from the vascular health page (exercise, salt reduction, quitting smoking, weight control) remain first-line.",
+      "Supplement choice should be discussed with a healthcare professional if the user has chronic medical conditions."
+    ]
+  },
+  {
+    "rule_id": "adult_18to49_with_vascular_risk_any_sex",
+    "applicable_if": {
+      "min_age": 18,
+      "max_age": 49,
+      "sex": "any",
+      "vascular_risk_factors_any_of": [
+        "high_blood_pressure",
+        "high_cholesterol",
+        "diabetes",
+        "obesity",
+        "smoking"
+      ]
+    },
+    "primary_goal": [
+      "support daily energy, immunity, and metabolism",
+      "provide baseline nutrients while vascular risk is addressed mainly by lifestyle and medical care"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_adults",
+      "display_name": "Centrum Adults",
+      "rationale": "Formulated for adults to support energy, immunity, and metabolism as part of general wellness.",
+      "citations": [
+        ":contentReference[oaicite:13]{index=13}"
+      ]
+    },
+    "alternative_products": [
+      {
+        "product_key": "centrum_men",
+        "display_name": "Centrum Men",
+        "when_to_use": "Male users who prefer a men-specific formula."
+      },
+      {
+        "product_key": "centrum_women",
+        "display_name": "Centrum Women",
+        "when_to_use": "Female users who prefer a women-specific formula."
+      }
+    ],
+    "safety_notes": [
+      "For younger adults, controlling blood pressure, cholesterol, blood sugar, and smoking is far more impactful than any supplement.",
+      "Users should not change or stop prescribed medicine based on supplement suggestions."
+    ]
+  },
+  {
+    "rule_id": "adult_on_glp1_with_weight_or_diabetes_concern",
+    "applicable_if": {
+      "min_age": 18,
+      "sex": "any",
+      "on_glp1_medication": true
+    },
+    "primary_goal": [
+      "help fill potential nutrient gaps that can occur with reduced food intake on GLP-1 therapy",
+      "support energy and metabolism"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_nutrient_replenish_glp1",
+      "display_name": "Centrum Nutrient Replenish – for GLP-1 users",
+      "rationale": "Comprehensive multivitamin with high-potency vitamins A, C, D, E, B12 and zinc, designed to fill potential nutrient gaps in GLP-1 users and support daily energy and metabolism.",
+      "citations": [
+        ":contentReference[oaicite:14]{index=14}"
+      ]
+    },
+    "alternative_products": [],
+    "safety_notes": [
+      "GLP-1 users should ask their prescriber before starting any supplement.",
+      "This product supports general nutrition and does not replace medical monitoring of blood sugar or weight."
+    ]
+  },
+  {
+    "rule_id": "pregnancy_or_trying_to_conceive",
+    "applicable_if": {
+      "sex": "female",
+      "life_stage_any_of": [
+        "planning_pregnancy",
+        "pregnant"
+      ]
+    },
+    "primary_goal": [
+      "support fetal neural tube development",
+      "meet increased micronutrient needs in pregnancy"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_maternal_prenatal_gummies",
+      "display_name": "Centrum Maternal Health PreNatal Multivitamin Gummies",
+      "rationale": "Provides folic acid, DHA, and multiple essential nutrients in a prenatal-specific formulation.",
+      "citations": [
+        ":contentReference[oaicite:15]{index=15}"
+      ]
+    },
+    "alternative_products": [],
+    "safety_notes": [
+      "Pregnant users must confirm any supplement choice with their obstetrician or midwife.",
+      "This rule is about nutritional support and not about treating pregnancy complications."
+    ]
+  },
+  {
+    "rule_id": "postnatal_breastfeeding_support",
+    "applicable_if": {
+      "sex": "female",
+      "life_stage_any_of": [
+        "postpartum",
+        "breastfeeding"
+      ]
+    },
+    "primary_goal": [
+      "replenish maternal nutrient stores",
+      "support ongoing breastfeeding needs"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_maternal_postnatal_gummies",
+      "display_name": "Centrum Maternal Health PostNatal Multivitamin Gummies",
+      "rationale": "Contains nutrients like biotin, vitamin C, and iodine to support maternal recovery and infant development through breastfeeding.",
+      "citations": [
+        ":contentReference[oaicite:16]{index=16}"
+      ]
+    },
+    "alternative_products": [],
+    "safety_notes": [
+      "Postnatal users should ask a clinician or lactation specialist before starting new supplements.",
+      "This does not replace medical follow-up after delivery."
+    ]
+  },
+  {
+    "rule_id": "menopause_with_hot_flashes_or_sleep_issues",
+    "applicable_if": {
+      "sex": "female",
+      "life_stage_any_of": [
+        "perimenopause",
+        "menopause"
+      ],
+      "symptom_any_of": [
+        "hot_flashes",
+        "night_sweats",
+        "sleep_difficulty"
+      ]
+    },
+    "primary_goal": [
+      "support quality of life during menopause",
+      "support sleep and cognitive function",
+      "help manage hot flashes (non-hormonal support)"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_menopause_support_complete",
+      "display_name": "Centrum Menopause Support – Complete Multivitamin + Hot Flash Support",
+      "rationale": "A complete multivitamin that combines standard nutrients with menopause-targeted ingredients like geniVida® for hot-flash support.",
+      "citations": [
+        ":contentReference[oaicite:17]{index=17}"
+      ]
+    },
+    "alternative_products": [
+      {
+        "product_key": "centrum_menopause_support_restful_sleep",
+        "display_name": "Centrum Menopause Support – Restful Sleep",
+        "when_to_use": "When sleep quality and night-time hot flashes are the main complaint."
+      }
+    ],
+    "safety_notes": [
+      "Menopause support supplements are not a replacement for medical evaluation of severe symptoms.",
+      "Users should discuss supplement plans with a healthcare professional, especially if using other hormonal or non-hormonal therapies."
+    ]
+  },
+  {
+    "rule_id": "younger_adult_focus_and_mental_performance",
+    "applicable_if": {
+      "min_age": 18,
+      "max_age": 49,
+      "sex": "any",
+      "primary_user_goal_any_of": [
+        "support_focus",
+        "mental_performance"
+      ],
+      "cognitive_concern_any_of": [
+        "subjective_memory_complaints",
+        "high_study_or_workload"
+      ]
+    },
+    "primary_goal": [
+      "support mental focus and daily energy",
+      "provide base nutrients plus caffeine for alertness"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_multigummies_multi_mental_focus",
+      "display_name": "Centrum MultiGummies Multi + Mental Focus",
+      "rationale": "A daily multivitamin gummy designed to support mental focus with caffeine from green tea in addition to standard micronutrients.",
+      "citations": [
+        ":contentReference[oaicite:18]{index=18}"
+      ]
+    },
+    "alternative_products": [],
+    "safety_notes": [
+      "Contains caffeine, so users should avoid excess caffeine from other sources.",
+      "Not a treatment for diagnosed attention disorders or mood disorders."
+    ]
+  },
+  {
+    "rule_id": "general_healthy_adult_no_specific_risk",
+    "applicable_if": {
+      "min_age": 18,
+      "sex": "any",
+      "vascular_risk_factors_any_of": [],
+      "cognitive_concern_any_of": [],
+      "primary_user_goal_any_of": [
+        "general_health",
+        "nutrient_gap_cover"
+      ]
+    },
+    "primary_goal": [
+      "provide broad nutritional backup",
+      "support everyday energy, immunity, and metabolism"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_multigummies_adults",
+      "display_name": "Centrum MultiGummies Adults",
+      "rationale": "Fruit-flavoured multivitamin gummies with essential nutrients to support energy, immunity, and metabolism.",
+      "citations": [
+        ":contentReference[oaicite:19]{index=19}"
+      ]
+    },
+    "alternative_products": [
+      {
+        "product_key": "centrum_adults",
+        "display_name": "Centrum Adults tablets",
+        "when_to_use": "When a tablet form is preferred over gummies."
+      }
+    ],
+    "safety_notes": [
+      "Healthy adults do not always need a multivitamin if diet is balanced, so advice from a healthcare professional or dietitian is helpful.",
+      "This rule is purely about general wellness support."
+    ]
+  },
+  {
+    "rule_id": "teens_13to17_cognitive_support",
+    "applicable_if": {
+      "min_age": 13,
+      "max_age": 17,
+      "sex": "any"
+    },
+    "primary_goal": [
+      "support growing brain development",
+      "provide nutrients for academic performance and focus",
+      "support energy during growth spurts"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_multigummies_teens",
+      "display_name": "Centrum MultiGummies Teen",
+      "rationale": "Specially formulated for teenagers with nutrients to support brain development, energy, and focus during critical growing years.",
+      "citations": [
+        ":contentReference[oaicite:20]{index=20}"
+      ]
+    },
+    "alternative_products": [
+      {
+        "product_key": "centrum_kids_complete",
+        "display_name": "Centrum Kids Complete",
+        "when_to_use": "For younger teens or those who prefer a different formulation."
+      }
+    ],
+    "safety_notes": [
+      "Parental guidance recommended for supplement use in teens.",
+      "Not a substitute for a balanced diet and healthy lifestyle habits."
+    ]
+  },
+  {
+    "rule_id": "children_4to12_cognitive_development",
+    "applicable_if": {
+      "min_age": 4,
+      "max_age": 12,
+      "sex": "any"
+    },
+    "primary_goal": [
+      "support healthy brain development",
+      "provide essential nutrients for growing children",
+      "support immune system and energy"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_kids_complete",
+      "display_name": "Centrum Kids Complete",
+      "rationale": "Complete multivitamin designed for children with essential nutrients for healthy growth, brain development, and immune support.",
+      "citations": [
+        ":contentReference[oaicite:21]{index=21}"
+      ]
+    },
+    "alternative_products": [
+      {
+        "product_key": "centrum_kids_multigummies",
+        "display_name": "Centrum Kids MultiGummies",
+        "when_to_use": "When gummy format is preferred for easier consumption."
+      }
+    ],
+    "safety_notes": [
+      "Always consult pediatrician before giving supplements to children.",
+      "Keep out of reach of children to prevent accidental overdose."
+    ]
+  },
+  {
+    "rule_id": "seniors_65plus_comprehensive_support",
+    "applicable_if": {
+      "min_age": 65,
+      "sex": "any",
+      "vascular_risk_factors_any_of": [],
+      "cognitive_concern_any_of": []
+    },
+    "primary_goal": [
+      "support healthy aging",
+      "maintain cognitive function",
+      "support bone, heart, and eye health"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_silver_adults_50_plus",
+      "display_name": "Centrum Silver Adults 50+",
+      "rationale": "Comprehensive multivitamin for seniors with age-adjusted nutrients to support healthy aging, cognitive function, and overall vitality.",
+      "citations": [
+        ":contentReference[oaicite:22]{index=22}"
+      ]
+    },
+    "alternative_products": [
+      {
+        "product_key": "centrum_silver_women_50_plus",
+        "display_name": "Centrum Silver Women 50+",
+        "when_to_use": "For women over 65 who prefer gender-specific formulation."
+      },
+      {
+        "product_key": "centrum_silver_men_50_plus",
+        "display_name": "Centrum Silver Men 50+",
+        "when_to_use": "For men over 65 who prefer gender-specific formulation."
+      }
+    ],
+    "safety_notes": [
+      "Seniors should discuss supplement use with healthcare providers, especially if taking medications.",
+      "Regular health monitoring recommended for older adults."
+    ]
+  },
+  {
+    "rule_id": "athletes_active_individuals",
+    "applicable_if": {
+      "min_age": 18,
+      "sex": "any",
+      "primary_user_goal_any_of": [
+        "athletic_performance",
+        "exercise_support",
+        "muscle_recovery"
+      ]
+    },
+    "primary_goal": [
+      "support energy metabolism during exercise",
+      "provide nutrients for muscle recovery",
+      "support overall performance and endurance"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_performance_multivitamin",
+      "display_name": "Centrum Adults (Performance Focus)",
+      "rationale": "Complete multivitamin to support energy metabolism, muscle function, and recovery for active individuals.",
+      "citations": [
+        ":contentReference[oaicite:23]{index=23}"
+      ]
+    },
+    "alternative_products": [
+      {
+        "product_key": "centrum_men",
+        "display_name": "Centrum Men",
+        "when_to_use": "For male athletes seeking gender-specific nutrition support."
+      },
+      {
+        "product_key": "centrum_women",
+        "display_name": "Centrum Women",
+        "when_to_use": "For female athletes seeking gender-specific nutrition support."
+      }
+    ],
+    "safety_notes": [
+      "Athletes should ensure adequate hydration and balanced nutrition alongside supplementation.",
+      "Not a substitute for proper training and recovery protocols."
+    ]
+  },
+  {
+    "rule_id": "stress_fatigue_support",
+    "applicable_if": {
+      "min_age": 18,
+      "sex": "any",
+      "primary_user_goal_any_of": [
+        "stress_management",
+        "fatigue_reduction",
+        "energy_boost"
+      ]
+    },
+    "primary_goal": [
+      "support energy levels during stressful periods",
+      "provide B-vitamins for stress response",
+      "support overall resilience and well-being"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_stress_energy",
+      "display_name": "Centrum Adults (Stress & Energy Support)",
+      "rationale": "Multivitamin formulated to support energy production and stress response with essential B-vitamins and nutrients.",
+      "citations": [
+        ":contentReference[oaicite:24]{index=24}"
+      ]
+    },
+    "alternative_products": [
+      {
+        "product_key": "centrum_multigummies_multi_mental_focus",
+        "display_name": "Centrum MultiGummies Multi + Mental Focus",
+        "when_to_use": "When mental focus along with stress support is needed."
+      }
+    ],
+    "safety_notes": [
+      "Supplements should complement, not replace, stress management techniques like exercise and adequate sleep.",
+      "Consult healthcare provider if experiencing chronic stress or fatigue."
+    ]
+  },
+  {
+    "rule_id": "universal_fallback_recommendation",
+    "applicable_if": {
+      "min_age": 0,
+      "sex": "any"
+    },
+    "primary_goal": [
+      "provide comprehensive nutritional support",
+      "fill potential dietary gaps",
+      "support overall health and well-being"
+    ],
+    "recommended_product": {
+      "product_key": "centrum_adults",
+      "display_name": "Centrum Adults",
+      "rationale": "Complete, balanced multivitamin suitable for most adults seeking comprehensive nutritional support.",
+      "citations": [
+        ":contentReference[oaicite:25]{index=25}"
+      ]
+    },
+    "alternative_products": [
+      {
+        "product_key": "centrum_multigummies_adults",
+        "display_name": "Centrum MultiGummies Adults",
+        "when_to_use": "When gummy format is preferred over tablets."
+      },
+      {
+        "product_key": "centrum_silver_adults_50_plus",
+        "display_name": "Centrum Silver Adults 50+",
+        "when_to_use": "For users over 50 years of age."
+      },
+      {
+        "product_key": "centrum_kids_complete",
+        "display_name": "Centrum Kids Complete",
+        "when_to_use": "For children and young teens under 18."
+      }
+    ],
+    "safety_notes": [
+      "This is a general recommendation - consult healthcare provider for personalized advice.",
+      "Always consider individual health conditions, medications, and dietary needs."
+    ]
+  }
+]
