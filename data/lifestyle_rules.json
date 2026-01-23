@@ -1,0 +1,238 @@
+{
+  "LifestyleInterventionFramework": {
+    "Purpose": "Lifestyle recommendations for VCI prevention based on ReCOGnAIze research",
+    "ResearchBasis": "Mohammed et al., 2025 - Clinical trials including SPRINT MIND",
+    "CorePrinciple": "VCI responds to specific lifestyle interventions and intensive management of vascular risk factors",
+    "EvidenceLevel": "VCI may respond better to lifestyle interventions than AD-focused approaches",
+    "PharmacotherapyNote": "Current AD monoclonal antibodies less effective in VCI and carry increased cerebral hemorrhage risk",
+    "PhysicalActivity": {
+      "Importance": "Critical for managing vascular risk factors and maintaining cognitive function",
+      "Recommendations": {
+        "AerobicExercise": {
+          "Duration": "150 minutes per week",
+          "Intensity": "Moderate intensity (50-70% max heart rate)",
+          "Frequency": "Spread across 5 days weekly",
+          "Examples": [
+            "Brisk walking",
+            "Swimming",
+            "Cycling",
+            "Dancing",
+            "Jogging"
+          ],
+          "VCIBenefits": [
+            "Improves processing speed through enhanced blood flow",
+            "Reduces white matter hyperintensity progression",
+            "Strengthens cognitive reserve",
+            "Lowers blood pressure naturally"
+          ]
+        },
+        "ResistanceTraining": {
+          "Frequency": "2-3 times per week",
+          "Duration": "20-30 minutes per session",
+          "FocusAreas": [
+            "Major muscle groups (legs, back, chest, arms)",
+            "Core strengthening"
+          ],
+          "VCIBenefits": [
+            "Maintains muscle mass for vascular health",
+            "Improves insulin sensitivity",
+            "Reduces metabolic syndrome risk",
+            "Enhances functional independence"
+          ]
+        }
+      }
+    },
+    "DietaryInterventions": {
+      "DASHDiet": {
+        "Description": "Dietary Approaches to Stop Hypertension",
+        "PrimaryBenefit": "Proven to reduce blood pressure and support vascular health",
+        "KeyComponents": {
+          "Vegetables": {
+            "ServingsDaily": "4-5",
+            "Focus": "Leafy greens, broccoli, carrots, sweet potatoes"
+          },
+          "Fruits": {
+            "ServingsDaily": "4-5",
+            "Focus": "Berries, oranges, bananas, melons"
+          },
+          "GrainProducts": {
+            "ServingsDaily": "7-8",
+            "Type": "Whole grains (oats, brown rice, whole wheat bread)"
+          },
+          "Protein": {
+            "ServingsDaily": "2",
+            "Options": [
+              "Lean meat (poultry, fish)",
+              "Legumes (beans, lentils)",
+              "Nuts and seeds"
+            ]
+          },
+          "DairyProducts": {
+            "ServingsDaily": "2-3",
+            "Type": "Low-fat or fat-free"
+          },
+          "Fats": {
+            "LimitDaily": "<27% of calories",
+            "Prefer": "Unsaturated fats (olive oil, fish)"
+          },
+          "Sodium": {
+            "LimitDaily": "<2,300 mg (ideally <1,500 mg)"
+          },
+          "Sugar": {
+            "LimitWeekly": "<5 servings of sweets"
+          }
+        }
+      },
+      "Mediterranean-Style": {
+        "Description": "Evidence-based for cognitive health and vascular protection",
+        "KeyFeatures": [
+          "Abundant vegetables and fruits",
+          "Whole grains as primary carbohydrate source",
+          "Olive oil as main fat source",
+          "Regular fish consumption (especially omega-3 rich)",
+          "Moderate poultry and eggs",
+          "Limited red meat",
+          "Moderate dairy (cheeses, yogurt)",
+          "Limited alcohol (wine with meals only)"
+        ],
+        "CognitiveProtection": "Associated with slower cognitive decline and better processing speed"
+      },
+      "SpecificNutrients": {
+        "Omega3FattyAcids": {
+          "Sources": [
+            "Fatty fish (salmon, mackerel, sardines, trout)",
+            "Walnuts",
+            "Flax seeds",
+            "Chia seeds"
+          ],
+          "Frequency": "Fish 2-3 times weekly",
+          "VCIBenefit": "Supports cerebrovascular integrity"
+        },
+        "Antioxidants": {
+          "Sources": [
+            "Berries (blueberries, strawberries)",
+            "Dark leafy greens",
+            "Nuts",
+            "Dark chocolate (70% cocoa)"
+          ],
+          "VCIBenefit": "Reduces oxidative stress in cerebrovascular disease"
+        },
+        "B-Vitamins": {
+          "Relevance": "Support homocysteine metabolism (elevated homocysteine linked to vascular disease)",
+          "Sources": [
+            "Leafy greens",
+            "Whole grains",
+            "Legumes",
+            "Eggs"
+          ]
+        }
+      }
+    },
+    "CognitiveEngagement": {
+      "Purpose": "Build cognitive reserve and maintain neural plasticity",
+      "Activities": {
+        "MentalStimulation": [
+          "Learning new skills (languages, instruments, art)",
+          "Puzzles and brain games (optimal if tablet-based like ReCOGnAIze)",
+          "Reading comprehensively",
+          "Strategic games (chess, bridge)",
+          "Problem-solving activities"
+        ],
+        "SocialEngagement": [
+          "Participating in group activities",
+          "Maintaining social networks",
+          "Volunteering",
+          "Group fitness classes",
+          "Community events"
+        ],
+        "DigitalCognitiveTesting": {
+          "Recommendation": "ReCOGnAIze app for regular cognitive assessment",
+          "Frequency": "Based on risk stratification (annually to every 3 years)",
+          "DomainsAssessed": [
+            "Processing speed",
+            "Executive function",
+            "Impulse control",
+            "Working memory"
+          ],
+          "Advantage": "Detects VCI-specific cognitive changes missed by traditional tools"
+        }
+      }
+    },
+    "Sleep": {
+      "Duration": "7-8 hours nightly",
+      "Quality": "Consistent sleep-wake cycle",
+      "VCIConnection": "Poor sleep quality associated with increased white matter disease",
+      "Optimization": [
+        "Maintain consistent bedtime and wake time",
+        "Sleep in cool, dark, quiet environment",
+        "Avoid screens 1 hour before bed",
+        "Limit caffeine after 2 PM",
+        "Regular exercise (but not near bedtime)",
+        "Manage stress before bed"
+      ]
+    },
+    "StressManagement": {
+      "Importance": "Chronic stress increases blood pressure and vascular inflammation",
+      "Interventions": [
+        "Mindfulness meditation",
+        "Progressive muscle relaxation",
+        "Deep breathing exercises (4-7-8 technique)",
+        "Yoga",
+        "Tai Chi",
+        "Nature walks",
+        "Creative activities (art, music, writing)"
+      ],
+      "DailyPractice": "15-30 minutes daily for optimal benefit"
+    },
+    "SmokingCessation": {
+      "CriticalImportance": "Smoking major risk factor for cerebrovascular disease",
+      "ImmediateVCIBenefit": "Brain blood flow improves within weeks of quitting",
+      "LongTermBenefit": "White matter disease progression slowed significantly"
+    },
+    "AlcoholModeration": {
+      "RecommendedLimits": {
+        "Women": "≤1 drink per day",
+        "Men": "≤2 drinks per day"
+      },
+      "VCIConsideration": "Excess alcohol damages cerebrovascular system",
+      "Definition": "1 drink = 5 oz wine, 12 oz beer, or 1.5 oz spirits"
+    },
+    "WeightManagement": {
+      "TargetBMI": "18.5-24.9",
+      "VCIBenefit": "Each 5-10% weight loss improves cardiovascular and cognitive outcomes",
+      "Approach": [
+        "Healthy diet (DASH or Mediterranean)",
+        "Regular physical activity",
+        "Behavioral modifications",
+        "Professional guidance if needed"
+      ]
+    },
+    "ImplementationStrategy": {
+      "StartingPoint": "Identify highest-impact interventions based on individual risk factors",
+      "Prioritization": {
+        "VeryHigh": [
+          "Blood pressure control (if hypertensive)",
+          "Lipid management (if hyperlipidemic)",
+          "Blood glucose control (if diabetic)"
+        ],
+        "High": [
+          "Regular aerobic exercise",
+          "Healthy diet adoption"
+        ],
+        "Supportive": [
+          "Cognitive engagement",
+          "Sleep optimization",
+          "Stress management"
+        ]
+      },
+      "Timeframe": "Lifestyle changes require 8-12 weeks to show neurobiological impact",
+      "Monitoring": "Reassess vascular risk factors every 3-6 months"
+    },
+    "CognitiveOutcomeExpectations": {
+      "Timeline": "Changes may require months to years for cognitive benefit",
+      "OptimalOutcome": "Slowing or halting cognitive decline progression",
+      "DementiaPrevention": "Intensive multi-factor intervention may delay dementia onset by 5+ years",
+      "ConversionRisk": "Without intervention, MCI individuals have 10-15% annual dementia conversion risk"
+    }
+  }
+}

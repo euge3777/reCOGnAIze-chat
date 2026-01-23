@@ -1,0 +1,159 @@
+{
+  "VascularHealthFramework": {
+    "Purpose": "Evidence-based vascular health recommendations derived from ReCOGnAIze research",
+    "ResearchBasis": "Mohammed et al., 2025 - ReCOGnAIze app study on VCI detection",
+    "KeyFindings": {
+      "VCIPrevalence": "VCI accounts for 50-70% of all dementia globally",
+      "UnderdiagnosisRate": "50-70% of VCI cases remain undiagnosed",
+      "Treatability": "VCI responds well to intensive vascular risk factor management"
+    },
+    "VascularRiskFactors": {
+      "Hypertension": {
+        "PrevalenceInVCI": 0.373,
+        "PrevalenceInNonVCI": 0.266,
+        "ClinicalSignificance": "Major modifiable risk factor",
+        "ThresholdForRisk": {
+          "Stage1": "120-139 mmHg systolic",
+          "Stage2": "140+ mmHg systolic"
+        },
+        "OptimalTarget": {
+          "Value": "<120 mmHg systolic",
+          "Evidence": "SPRINT MIND trial: intensive BP control significantly reduces cognitive impairment progression",
+          "RiskReduction": "Intense BP control can delay dementia onset by ~5 years"
+        },
+        "Recommendations": [
+          "Monitor blood pressure regularly (weekly for elevated)",
+          "Engage in aerobic exercise (150 min/week moderate intensity)",
+          "Reduce sodium intake to <2,300 mg/day",
+          "Maintain DASH diet (Dietary Approaches to Stop Hypertension)",
+          "Manage stress through meditation or yoga",
+          "Limit alcohol consumption",
+          "Maintain healthy weight (BMI 18.5-24.9)"
+        ]
+      },
+      "Hyperlipidemia": {
+        "PrevalenceInVCI": 0.60,
+        "PrevalenceInNonVCI": 0.354,
+        "StatisticalSignificance": "p=0.003 - Strongest discriminator between VCI and non-VCI",
+        "EffectSize": "Cohen's d effect noted as significant",
+        "Role": "60% of VCI patients have hyperlipidemia vs 35.4% without VCI",
+        "OptimalTargets": {
+          "TotalCholesterol": "<200 mg/dL",
+          "LDL": "<100 mg/dL",
+          "HDL": ">40 mg/dL (men), >50 mg/dL (women)",
+          "Triglycerides": "<150 mg/dL"
+        },
+        "Recommendations": [
+          "Annual lipid panel screening",
+          "Increase soluble fiber intake (oats, beans, fruits)",
+          "Choose lean proteins and fish rich in omega-3",
+          "Eliminate trans fats and limit saturated fats",
+          "Engage in 30 minutes of daily aerobic activity",
+          "Maintain healthy weight",
+          "Consider statin therapy if lifestyle changes insufficient"
+        ]
+      },
+      "DiabetesMellitus": {
+        "PrevalenceInVCI": 0.227,
+        "PrevalenceInNonVCI": 0.19,
+        "StatisticalSignificance": "p=0.234 (not statistically significant but elevated trend)",
+        "ClinicalSignificance": "Elevated in VCI group, warrants management",
+        "DiagnosticCriteria": {
+          "Fasting": "≥126 mg/dL",
+          "RandomBlood": "≥200 mg/dL with symptoms",
+          "A1C": "≥6.5%"
+        },
+        "Recommendations": [
+          "Regular A1C monitoring (target <7% for most, <8% for elderly)",
+          "Blood glucose self-monitoring when on medications",
+          "Maintain consistent carbohydrate intake timing",
+          "Prioritize complex carbohydrates and high-fiber foods",
+          "Engage in 150 minutes moderate-intensity aerobic exercise/week",
+          "Resistance training 2-3 times weekly",
+          "Maintain healthy weight (BMI reduction of 5-10% if overweight)",
+          "Manage stress and ensure adequate sleep (7-8 hours)"
+        ]
+      }
+    },
+    "VascularCognitiveMarkers": {
+      "ProcessingSpeed": {
+        "Description": "Key VCI biomarker from ReCOGnAIze study",
+        "SHAPImportance": 0.53,
+        "MeasurementMethod": "Symbol Matching task - average response time",
+        "ImpairmentIndicator": "Slowed processing and reduced efficiency",
+        "ClinicalSignificance": "Hallmark of subcortical ischemic VCI",
+        "MechanismInVCI": "Small vessel disease disrupts frontal-subcortical circuits"
+      },
+      "ExecutiveFunction": {
+        "Description": "Higher-order cognitive processes affected in VCI",
+        "PrevalenceInVCI": 0.82,
+        "MeasurementMethod": "Trail Making Test adaptation",
+        "Impairments": [
+          "Difficulty with set-shifting",
+          "Reduced cognitive flexibility",
+          "Impaired task planning",
+          "Slower execution of complex tasks",
+          "Increased error rates on alternating tasks"
+        ],
+        "ClinicalSignificance": "Particularly vulnerable to frontal-subcortical circuit disruption"
+      },
+      "ImpulseControl": {
+        "Description": "Ability to resist urges and inhibit inappropriate responses",
+        "PrevalenceInVCI": 0.79,
+        "MeasurementMethod": "Go/No-Go paradigm (Airplane Game)",
+        "VCICharacteristic": "Significantly greater impairment in VCI vs non-VCI (p<0.001)",
+        "BehavioralManifestation": "Impulse dyscontrol is significant behavioral manifestation",
+        "Impairments": [
+          "Difficulty inhibiting responses",
+          "Impulsive behavior",
+          "Poor sustained attention",
+          "Increased false positives on go/no-go tasks",
+          "Distractibility"
+        ]
+      }
+    },
+    "NeuroimagingMarkers": {
+      "WhiteMatterHyperintensities": {
+        "Description": "Key vascular pathology indicator",
+        "MeasurementScale": "Modified Fazekas Score (0-12)",
+        "Classification": {
+          "Absent-Mild": "Score 0-4",
+          "Moderate-Severe": "Score 5-12"
+        },
+        "VCIDefinition": "Moderate-to-high WMH (Fazekas 5-12) with cognitive impairment",
+        "ClinicalSignificance": "Associated with VCI diagnosis"
+      }
+    },
+    "ScreeningRecommendations": {
+      "MoCALimitation": "Non-significant in detecting VCI; AUC=0.65",
+      "ReCOGnAIzePerformance": "AUC=0.85 for VCI detection",
+      "OptimalApproach": "Gamified tablet-based assessment targeting VCI-specific biomarkers",
+      "ScreeningFrequency": {
+        "HighRisk": "Annually if multiple vascular risk factors (HTN + HLD, or DM)",
+        "ModerateRisk": "Every 2 years",
+        "LowRisk": "Every 3-5 years over age 65"
+      }
+    },
+    "InterventionTimeline": {
+      "CriticalWindow": "MCI stage or earlier",
+      "RiskConversion": "MCI individuals have 10-15% annual risk of conversion to dementia",
+      "PotentialImpact": "5-year delay in dementia onset could reduce prevalence by ~50%",
+      "CurrentlyAvailable": "Lifestyle interventions + intensive vascular risk factor management",
+      "FutureDirections": "Emerging pharmacotherapies with improved safety profiles for VCI"
+    },
+    "DispropionateAffected": {
+      "PopulationsAtHighestRisk": [
+        "Asian populations",
+        "African populations",
+        "Hispanic populations"
+      ],
+      "RiskDrivers": [
+        "Elevated hypertension rates",
+        "High ischemic stroke burden",
+        "Diabetes prevalence",
+        "Sedentary lifestyles",
+        "Genetic predispositions"
+      ]
+    }
+  }
+}

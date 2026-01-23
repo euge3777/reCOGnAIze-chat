@@ -1,153 +1,227 @@
-[
-  {
-    "type": "cognitive_domain",
-    "domain": "processing_speed",
-    "definition": "How quickly a person can take in information, process it, and respond.",
-    "common_impairment_signs": [
-      "takes longer to complete simple tasks",
-      "slow reaction time",
-      "difficulty keeping up with fast conversations or instructions"
+{
+  "WorkingMemory": {
+    "Definition": "The ability to temporarily hold and use information to complete tasks or solve problems.",
+    "Levels": ["Low", "Medium", "High"],
+    "HowThisAffectsYou": {
+      "Low": [
+        "Forget recent instructions: You might not recall steps or directions given just moments ago.",
+        "Struggle to follow conversations: It may be hard to remember details or keep track of discussions.",
+        "Misplace items frequently: You might often lose track of your keys, phone, or glasses.",
+        "Find multitasking overwhelming: Managing multiple tasks at once might feel confusing or stressful.",
+        "Forget appointments or deadlines: Keeping track of important dates and commitments can become challenging.",
+        "Repeat questions or stories: You might unintentionally ask the same question or share the same story multiple times."
+      ],
+      "Medium": [
+        "Occasionally forget instructions: You may need to double-check steps for complex tasks.",
+        "Lose track of conversations: Following details in lengthy discussions might require extra focus.",
+        "Misplace items sometimes: Remembering where you put your phone or keys may take some effort.",
+        "Struggle to multitask: Handling multiple tasks at once might feel less fluid and more mentally tiring.",
+        "Need reminders for appointments: Keeping track of schedules may require the help of calendars or apps.",
+        "Find complex problem-solving slower: Retaining all the relevant information while analyzing may take extra time."
+      ],
+      "High": [
+        "Easily remember instructions: You can retain multiple steps and follow through without needing reminders.",
+        "Recall details from conversations: You can remember names, facts, and important points with ease.",
+        "Manage tasks efficiently: Juggling several pieces of information at once feels natural and organized.",
+        "Adapt to new information quickly: Learning and applying new knowledge happens smoothly.",
+        "Solve problems effectively: You can hold relevant details in your mind while analyzing and resolving issues.",
+        "Navigate daily tasks seamlessly: Remembering appointments, deadlines, and other commitments comes effortlessly."
+      ]
+    },
+    "HowToImprove": [
+      "Start with simple memory exercises.",
+      "Use visual aids and reminders.",
+      "Repeat and rehearse instructions.",
+      "Minimize distractions while working.",
+      "Organize your environment.",
+      "Practice guided cognitive training."
     ],
-    "linked_conditions": [
-      "vascular cognitive impairment (VCI)",
-      "white matter hyperintensities",
-      "subcortical ischemic changes"
-    ],
-    "measured_by_tasks": [
-      "Symbol Matching (ReCOGnAIze)",
-      "Trail Making - completion time"
-    ],
-    "biological_basis": "Slowed processing speed in VCI is often driven by cerebrovascular damage to frontal–subcortical circuits and disrupted white-matter tracts.",
-    "associated_health_goals": [
-      "support vascular health",
-      "support brain function",
-      "maintain daily functioning"
-    ],
-    "source_note": "ReCOGnAIze development data show processing speed and response-time variability as key VCI markers.",
-    "citation": ":contentReference[oaicite:1]{index=1}"
+    "HowToMaintain": [
+      "Break tasks into smaller, manageable steps.",
+      "Use memory aids, such as planners or digital apps.",
+      "Link new information to familiar concepts to make it easier to remember.",
+      "Practice puzzles or memory games regularly.",
+      "Write down key points during meetings or conversations.",
+      "Explain learned information to others to reinforce it."
+    ]
   },
-  {
-    "type": "cognitive_domain",
-    "domain": "executive_function",
-    "definition": "The set of skills that help with planning, organizing, switching between tasks, and staying on track.",
-    "common_impairment_signs": [
-      "difficulty switching rules or tasks",
-      "trouble following multi-step instructions",
-      "disorganized or inefficient problem solving"
+  "ExecutiveFunction": {
+    "Definition": "The capacity to plan, organize, manage tasks, adapt to changes, and make decisions effectively.",
+    "Levels": ["Low", "Medium", "High"],
+    "HowThisAffectsYou": {
+      "Low": [
+        "Concentrating and handling multiple tasks at once can become overwhelming and confusing.",
+        "Unexpected situations may feel disruptive and stressful.",
+        "Keeping track of time and responsibilities may be challenging without external reminders.",
+        "Structuring your day or activities may feel confusing or unmanageable.",
+        "Large challenges may seem daunting and hard to break down.",
+        "Stress may make it difficult to think through your actions before responding."
+      ],
+      "Medium": [
+        "Handling several tasks at once may feel tiring or overwhelming at times.",
+        "Shifting plans or routines might require extra time and effort.",
+        "You might need reminders to complete all parts of a process.",
+        "Deciding which task to do first can sometimes feel confusing.",
+        "Breaking down large challenges into manageable steps may take extra effort.",
+        "Experience difficulty regulating emotions in stressful situations."
+      ],
+      "High": [
+        "You can concentrate and handle multiple tasks simultaneously with efficiency and ease.",
+        "Adjusting to unexpected situations or shifts in plans feels natural and manageable.",
+        "Structuring and prioritizing your activities ensures you stay on top of your responsibilities.",
+        "You can weigh options carefully and choose the best course of action without hesitation.",
+        "You can simplify challenging tasks into smaller, actionable steps.",
+        "Staying calm and composed allows you to make logical decisions."
+      ]
+    },
+    "HowToImprove": [
+      "Use task planners or digital tools.",
+      "Break larger tasks into smaller, manageable steps.",
+      "Practice decision-making exercises.",
+      "Incorporate routines and schedules.",
+      "Work on one task at a time.",
+      "Engage in logic puzzles or brain-training apps."
     ],
-    "linked_conditions": [
-      "VCI",
-      "mild cognitive impairment (MCI)",
-      "frontal network disruption"
-    ],
-    "measured_by_tasks": [
-      "Trail Making with alternating sequences",
-      "complex multi-step game elements (e.g., Grocery Shopping planning)"
-    ],
-    "biological_basis": "Executive skills rely on frontal–subcortical loops that are vulnerable to vascular injury, causing problems even when memory is relatively preserved.",
-    "associated_health_goals": [
-      "support brain function",
-      "support everyday independence"
-    ],
-    "source_note": "BIOCIS analysis found greater executive deficits in VCI compared to non-vascular cognitive impairment.",
-    "citation": ":contentReference[oaicite:2]{index=2}"
+    "HowToMaintain": [
+      "Practice organizing complex tasks or events.",
+      "Set higher goals to improve problem-solving skills.",
+      "Take on leadership roles to strengthen decision-making.",
+      "Use journaling to reflect on and refine your methods.",
+      "Try solving real-world puzzles, like escape rooms or riddles."
+    ]
   },
-  {
-    "type": "cognitive_domain",
-    "domain": "attention_and_impulse_control",
-    "definition": "Ability to stay focused, ignore distractions, and stop oneself from reacting too quickly.",
-    "common_impairment_signs": [
-      "pressing/swiping even when they know they should wait",
-      "getting distracted mid-task",
-      "more mistakes when tasks get faster"
+  "Attention": {
+    "Definition": "The ability to focus on specific information, tasks, or stimuli while ignoring distractions.",
+    "Levels": ["Low", "Medium", "High"],
+    "HowThisAffectsYou": {
+      "Low": [
+        "Easily distracted by background noise or interruptions.",
+        "Struggle to focus on tasks for extended periods.",
+        "Miss important details in instructions or conversations.",
+        "Find it hard to stay engaged in lengthy or complex activities.",
+        "Have trouble switching focus between tasks efficiently.",
+        "Experience difficulty filtering out irrelevant information."
+      ],
+      "Medium": [
+        "Occasionally lose focus in noisy or distracting environments.",
+        "Need breaks to maintain focus during long tasks.",
+        "Miss minor details while multitasking.",
+        "Find it challenging to sustain attention on less interesting tasks.",
+        "Require effort to switch focus between multiple priorities.",
+        "Feel mentally fatigued after prolonged concentration."
+      ],
+      "High": [
+        "Easily maintain focus on tasks despite distractions.",
+        "Quickly identify and prioritize relevant information.",
+        "Stay engaged in lengthy or complex tasks without losing interest.",
+        "Switch attention efficiently between multiple tasks.",
+        "Effectively filter out irrelevant information.",
+        "Sustain concentration for extended periods with minimal fatigue."
+      ]
+    },
+    "HowToImprove": [
+      "Practice meditation.",
+      "Work in quiet environments.",
+      "Use timers or apps to manage attention spans.",
+      "Break tasks into shorter intervals with planned breaks.",
+      "Engage in concentration-building games.",
+      "Set clear goals and prioritize tasks."
     ],
-    "linked_conditions": [
-      "VCI",
-      "mild behavioral impairment (impulse dyscontrol)",
-      "white-matter disruption"
-    ],
-    "measured_by_tasks": [
-      "Airplane Go/No-Go task",
-      "response inhibition measures"
-    ],
-    "biological_basis": "Impulse dyscontrol in high vascular burden is linked to disrupted inhibitory pathways and white-matter lesions.",
-    "associated_health_goals": [
-      "support attention and focus",
-      "support vascular health"
-    ],
-    "source_note": "Airplane go/no-go in ReCOGnAIze targets inhibitory control, a common issue in patients with high WMH burden.",
-    "citation": ":contentReference[oaicite:3]{index=3}"
+    "HowToMaintain": [
+      "Establish routines that reinforce consistent focus habits.",
+      "Regularly challenge your attention with new mental exercises.",
+      "Limit multitasking to improve task-specific focus.",
+      "Create distraction-free zones for work or study.",
+      "Incorporate physical activity to support cognitive health."
+    ]
   },
-  {
-    "type": "cognitive_domain",
-    "domain": "memory",
-    "definition": "Ability to learn, store, and recall information over short and longer delays.",
-    "common_impairment_signs": [
-      "forgetting short shopping lists",
-      "repeating questions",
-      "needing frequent prompts"
+  "ProcessingSpeed": {
+    "Definition": "The ability to quickly perceive, process, and respond to information.",
+    "Levels": ["Low", "Medium", "High"],
+    "HowThisAffectsYou": {
+      "Low": [
+        "Take longer to understand and respond to new information.",
+        "Feel overwhelmed by fast-paced tasks or conversations.",
+        "Struggle to keep up with rapidly changing situations.",
+        "Need extra time to complete tasks with time constraints.",
+        "Find decision-making slower and more deliberate.",
+        "Require more effort to learn new concepts or skills."
+      ],
+      "Medium": [
+        "Occasionally feel rushed during fast-paced activities.",
+        "Take slightly longer to respond to unfamiliar tasks.",
+        "Keep up with most conversations but struggle with very rapid exchanges.",
+        "Feel mentally taxed when handling large amounts of information quickly.",
+        "Need additional practice to master new skills.",
+        "Occasionally delay decisions when faced with complex choices."
+      ],
+      "High": [
+        "Quickly process and understand new information.",
+        "Effortlessly keep up with fast-paced conversations and tasks.",
+        "Adapt swiftly to changing situations or environments.",
+        "Complete tasks efficiently, even under tight time constraints.",
+        "Make quick, accurate decisions with confidence.",
+        "Learn new skills or concepts rapidly and effectively."
+      ]
+    },
+    "HowToImprove": [
+      "Practice rapid decision-making exercises.",
+      "Engage in reaction-based activities.",
+      "Train with apps designed to improve cognitive speed.",
+      "Solve puzzles or riddles.",
+      "Gradually increase the complexity of tasks.",
+      "Incorporate physical exercise."
     ],
-    "linked_conditions": [
-      "MCI due to mixed pathology",
-      "age-related cognitive decline"
-    ],
-    "measured_by_tasks": [
-      "Grocery Shopping list recall",
-      "delayed recall tasks"
-    ],
-    "biological_basis": "Memory can be secondarily affected in VCI, especially when vascular injury co-exists with neurodegenerative processes.",
-    "associated_health_goals": [
-      "support memory",
-      "support brain health with age"
-    ],
-    "source_note": "ReCOGnAIze composite score detects MCI more accurately than MoCA.",
-    "citation": ":contentReference[oaicite:4]{index=4}"
+    "HowToMaintain": [
+      "Regularly challenge yourself with fast-paced mental activities.",
+      "Stay engaged with hobbies that require quick thinking.",
+      "Avoid prolonged periods of mental inactivity.",
+      "Focus on maintaining a healthy lifestyle, including sleep and nutrition."
+    ]
   },
-  {
-    "type": "vascular_profile",
-    "section": "vascular_health_and_brain",
-    "definition": "Vascular health refers to the body's ability to maintain healthy blood vessels and good blood flow, which is critical for brain function.",
-    "risk_factors": [
-      {
-        "code": "high_blood_pressure",
-        "label": "High blood pressure",
-        "brief_effect": "Can make blood vessels narrow and stiff, reducing blood flow to the brain."
-      },
-      {
-        "code": "high_cholesterol",
-        "label": "High cholesterol",
-        "brief_effect": "Can cause plaque build-up that clogs arteries, limiting blood flow."
-      },
-      {
-        "code": "obesity",
-        "label": "Obesity",
-        "brief_effect": "Increases blood pressure and cholesterol, and promotes inflammation."
-      },
-      {
-        "code": "diabetes",
-        "label": "Diabetes",
-        "brief_effect": "Damages blood vessels and raises blood sugar, harming vessel walls."
-      },
-      {
-        "code": "smoking",
-        "label": "Smoking",
-        "brief_effect": "Harms the lining of blood vessels, raises blood pressure, and reduces oxygen delivery."
-      }
+  "ImpulseControl": {
+    "Definition": "The ability to resist urges, delay gratification, and regulate emotions and actions.",
+    "Levels": ["Low", "Medium", "High"],
+    "HowThisAffectsYou": {
+      "Low": [
+        "Act impulsively without considering consequences.",
+        "Struggle to resist immediate temptations or distractions.",
+        "Have difficulty regulating emotions in stressful situations.",
+        "Interrupt others during conversations or activities.",
+        "Make hasty decisions that may lead to regret.",
+        "Find it hard to delay gratification or rewards."
+      ],
+      "Medium": [
+        "Occasionally act on impulse but recognize and correct behavior.",
+        "Struggle to resist temptations during high-stress situations.",
+        "Sometimes feel emotionally overwhelmed and react strongly.",
+        "Need to consciously pause before making decisions.",
+        "Occasionally interrupt others but catch yourself quickly.",
+        "Find it challenging but possible to delay gratification for long-term goals."
+      ],
+      "High": [
+        "Consistently think through actions before responding.",
+        "Easily resist distractions or temptations.",
+        "Stay calm and composed during stressful situations.",
+        "Wait patiently for appropriate moments to act or speak.",
+        "Make thoughtful decisions with long-term outcomes in mind.",
+        "Maintain strong self-discipline and focus on goals."
+      ]
+    },
+    "HowToImprove": [
+      "Practice mindfulness.",
+      "Pause and count to ten before making decisions.",
+      "Set clear goals.",
+      "Engage in activities like yoga or meditation.",
+      "Reward yourself for practicing delayed gratification.",
+      "Use habit-tracking tools."
     ],
-    "brain_impact_summary": "All of these factors can reduce blood flow to the brain and may increase the risk of memory and cognitive problems, including stroke and vascular cognitive impairment.",
-    "lifestyle_recommendations": [
-      "Quit smoking",
-      "Control blood pressure",
-      "Reduce salt intake",
-      "Do regular cardio exercise",
-      "Include healthy fats",
-      "Maintain a healthy weight",
-      "Limit alcohol consumption",
-      "Attend regular medical check-ups",
-      "Eat more fibre",
-      "Manage stress"
-    ],
-    "disclaimer": "This information is educational and does not diagnose any disease. Results should be interpreted only by a qualified healthcare professional.",
-    "citation": ":contentReference[oaicite:5]{index=5}"
+    "HowToMaintain": [
+      "Continue practicing mindfulness and emotional awareness.",
+      "Set increasingly challenging goals to strengthen self-discipline.",
+      "Reflect on past decisions to reinforce thoughtful action-taking.",
+      "Regularly evaluate and adjust habits to avoid complacency.",
+      "Stay accountable by sharing goals with trusted peers."
+    ]
   }
-]
+}

@@ -1,0 +1,271 @@
+{
+  "SleepHealthFramework": {
+    "Purpose": "Sleep optimization for VCI prevention and cognitive health maintenance",
+    "ResearchBasis": "Mohammed et al., 2025 - ReCOGnAIze study context; broader sleep neuroscience literature",
+    "CriticalConnection": "Sleep quality directly associated with white matter disease progression in cerebrovascular disease",
+    "SleepDuration": {
+      "OptimalRange": "7-8 hours per night",
+      "Age65Plus": "Maintain consistent 7-8 hours despite common age-related changes",
+      "CognitiveBenefit": "Adequate sleep consolidates memory and clears cerebral metabolic waste (glymphatic function)",
+      "VCIContext": "Poor sleep quality linked to increased white matter hyperintensity burden"
+    },
+    "SleepArchitecture": {
+      "OptimalCycles": "4-6 complete 90-minute sleep cycles per night",
+      "StageBreakdown": {
+        "NREM1": {
+          "Duration": "5-10 minutes (1st cycle)",
+          "Function": "Light sleep, transition phase"
+        },
+        "NREM2": {
+          "Duration": "20-25 minutes per cycle",
+          "Function": "Consolidates memories and motor skills"
+        },
+        "NREM3": {
+          "Duration": "15-30 minutes early in night, minimal later",
+          "Function": "Deep sleep for physical restoration and immune function"
+        },
+        "REM": {
+          "Duration": "20-25 minutes later cycles",
+          "Function": "Emotional regulation, memory consolidation, executive function support"
+        }
+      },
+      "VCIOptimization": "Each stage critical for processing speed and executive function maintenance"
+    },
+    "SleepQualityFactors": {
+      "BedtimeConsistency": {
+        "Importance": "Circadian rhythm synchronization crucial for cognitive function",
+        "Recommendation": "Same bedtime and wake time ±30 min daily (including weekends)",
+        "VCIBenefit": "Consistent sleep schedule reduces vascular inflammation markers"
+      },
+      "EnvironmentalFactors": {
+        "Temperature": {
+          "Optimal": "60-67°F (15-19°C)",
+          "Rationale": "Core body temperature drops during sleep; external cold facilitates this"
+        },
+        "Darkness": {
+          "Optimal": "Complete darkness (0-5 lux)",
+          "Mechanism": "Melatonin suppression by light impairs sleep initiation",
+          "Recommendation": "Use blackout curtains, eye mask if needed"
+        },
+        "Noise": {
+          "Optimal": "<30 decibels",
+          "Disruption": "Even quiet noise can fragment sleep architecture",
+          "Solution": "White noise machine, earplugs, or address noise sources"
+        },
+        "Humidity": {
+          "Optimal": "40-60%",
+          "Issue": "Dry air irritates airways; excessive humidity promotes allergens"
+        }
+      },
+      "ScreenExposure": {
+        "BlueLight": {
+          "Problem": "Suppresses melatonin production",
+          "Screens": "Phones, tablets, computers, TVs",
+          "Timing": "Avoid 1-2 hours before bedtime",
+          "Solution": "Blue light filters, or non-negotiable screen-free time before bed"
+        },
+        "MentalStimulation": "Evening screens keep brain engaged when wind-down needed"
+      }
+    },
+    "PreSleepRoutine": {
+      "Duration": "30-60 minutes before bed",
+      "StepByStepGuidance": {
+        "Step1": {
+          "Time": "90 minutes before bed",
+          "Action": "Dim lights in home to 30% brightness",
+          "Rationale": "Signals circadian system of approaching sleep"
+        },
+        "Step2": {
+          "Time": "60 minutes before bed",
+          "Action": "Complete last meal or snack (if hungry)",
+          "Guideline": "Light snack if needed, avoid heavy meals",
+          "Avoid": "Alcohol (disrupts REM sleep), caffeine"
+        },
+        "Step3": {
+          "Time": "45-60 minutes before bed",
+          "Action": "Gentle stretching or light yoga",
+          "Duration": "10-15 minutes",
+          "Benefit": "Reduces physical tension, promotes relaxation"
+        },
+        "Step4": {
+          "Time": "45-60 minutes before bed",
+          "Action": "Warm bath or shower",
+          "Temperature": "Warm (not hot)",
+          "Duration": "20-30 minutes",
+          "Benefit": "Post-bath temperature drop signals sleep onset"
+        },
+        "Step5": {
+          "Time": "30-45 minutes before bed",
+          "Action": "Meditation or deep breathing",
+          "Technique": "4-7-8 breathing (inhale 4 counts, hold 7, exhale 8)",
+          "Duration": "10 minutes",
+          "VCIBenefit": "Lowers blood pressure, reduces anxiety"
+        },
+        "Step6": {
+          "Time": "15-30 minutes before bed",
+          "Action": "Reading (physical book, not screen)",
+          "Type": "Non-stimulating content",
+          "Duration": "15-30 minutes"
+        },
+        "Step7": {
+          "Time": "0-15 minutes before bed",
+          "Action": "Screen-free wind-down",
+          "Optional": "Journaling, gratitude practice, or gentle stretching"
+        }
+      }
+    },
+    "CaffeineMitigation": {
+      "Metabolism": "Half-life ~5 hours; 6 hours after consumption, 25% remains in system",
+      "LastIntakeTiming": "No caffeine after 2 PM (to allow clearance by bedtime)",
+      "VCIConsideration": "Caffeine-induced sleep fragmentation worsens vascular disease outcomes",
+      "HighCaffeineIncreasers": [
+        "Limiting to morning only",
+        "Switching to decaf after noon",
+        "Avoiding energy drinks entirely"
+      ]
+    },
+    "AlcoholAndSleep": {
+      "InitialEffect": "Alcohol may feel sedating (depressant effect)",
+      "RealImpact": "Severely disrupts sleep architecture",
+      "Mechanisms": [
+        "Suppresses REM sleep (70% reduction in early night)",
+        "Increases sleep fragmentation and awakenings",
+        "Reduces overall sleep quality despite potentially longer duration",
+        "Disrupts circadian rhythm"
+      ],
+      "HealthData": "Even moderate drinking (1-2 drinks) impairs sleep quality",
+      "VCIRelevance": "Poor sleep accelerates white matter disease progression",
+      "Recommendation": "Avoid alcohol 4-6 hours before bed"
+    },
+    "ExerciseAndSleep": {
+      "BenefitSummary": "Regular exercise significantly improves sleep quality and reduces insomnia",
+      "TimingConsideration": "Exercise too close to bedtime may be stimulating",
+      "Guideline": "Vigorous exercise completed ≥3 hours before bedtime",
+      "OptimalTiming": "Morning or early afternoon aerobic exercise (150 min/week moderate intensity)",
+      "SleepBenefit": "Exercise increases adenosine (sleep-promoting neurotransmitter)"
+    },
+    "NappingGuidance": {
+      "Strategic": "Power naps (20 minutes) can boost afternoon alertness",
+      "Caution": "Longer naps (>30 minutes) can cause sleep inertia and worsen nighttime sleep",
+      "Timing": "No later than 3 PM (naps after affect nighttime sleep)",
+      "VCIContext": "Daytime sleepiness may indicate inadequate nighttime sleep or early cognitive decline"
+    },
+    "InsomniaCognitiveBehavioralTherapy": {
+      "CBT_I": "Gold standard for chronic insomnia",
+      "Components": {
+        "SleepRestriction": {
+          "Method": "Limit time in bed to actual sleep time",
+          "Gradual": "Increase by 15 minutes weekly as sleep consolidates",
+          "Goal": "Strengthen sleep association with bed"
+        },
+        "StimulusControl": [
+          "Use bed only for sleep (and intimacy)",
+          "Leave bed if awake >20 minutes",
+          "Return only when drowsy"
+        ],
+        "CognitiveRestructuring": [
+          "Challenge catastrophic thoughts about sleep loss",
+          "Reduce performance anxiety about sleep"
+        ],
+        "SleepHygiene": "Environmental and behavioral modifications"
+      }
+    },
+    "MelatoninConsiderations": {
+      "NaturalProduction": "Declines with age; accelerated in certain neurological conditions",
+      "SupplementGuidance": {
+        "Dosage": "0.5-3 mg (start low)",
+        "Timing": "30-60 minutes before target bedtime",
+        "Duration": "Consider cycles (2-3 months on, 1 month off) to prevent tolerance"
+      },
+      "VCIContext": "Melatonin has neuroprotective and anti-inflammatory properties",
+      "Effectiveness": "More effective for circadian rhythm disorders than primary insomnia",
+      "ClinicalNote": "Discuss with healthcare provider given vascular disease"
+    },
+    "SleepDisordersWarningSignsRequiringEvaluation": {
+      "SleepApnea": {
+        "Signs": [
+          "Loud snoring",
+          "Witnessed apneas (breathing pauses)",
+          "Excessive daytime sleepiness",
+          "Morning headaches"
+        ],
+        "VCIRelevance": "Sleep apnea is independent vascular risk factor; worsens VCI progression"
+      },
+      "RestlessLegsSyndrome": {
+        "Signs": [
+          "Irresistible urge to move legs in evening",
+          "Uncomfortable sensations relieved by movement",
+          "Disrupts sleep onset"
+        ]
+      },
+      "REM_BehaviorDisorder": {
+        "Signs": [
+          "Acting out vivid dreams",
+          "Potential violence during sleep"
+        ],
+        "ConcernForVCI": "Associated with neurodegenerative processes"
+      },
+      "NocturiaExcess": {
+        "Definition": ">2 urinations per night",
+        "VCIRelevance": "May indicate vascular dysfunction or medication side effect"
+      }
+    },
+    "AgeRelatedSleepChanges": {
+      "Normal60Plus": [
+        "Increased sleep latency (time to fall asleep)",
+        "More frequent nighttime awakenings",
+        "Reduced deep sleep (NREM3)",
+        "Earlier wake times",
+        "Increased daytime napping"
+      ],
+      "CriticalPoint": "These changes are normal but quality maintenance is possible with intervention"
+    },
+    "MonitoringAndTracking": {
+      "SleepDiary": {
+        "Duration": "1-2 weeks baseline, then monthly check-ins",
+        "Metrics": [
+          "Bedtime and wake time",
+          "Time to fall asleep",
+          "Number and duration of nighttime awakenings",
+          "Wake time",
+          "Total sleep duration",
+          "Sleep quality rating (1-10)",
+          "Daytime functioning"
+        ]
+      },
+      "WearableDevices": {
+        "Options": "Smartwatches, fitness trackers, sleep-specific devices",
+        "Caution": "Moderate accuracy; useful for trends but not clinical diagnosis",
+        "Benefit": "Objective data supports behavior change"
+      }
+    },
+    "ImplementationStrategy": {
+      "Phase1": {
+        "Duration": "Week 1",
+        "Focus": "Environmental optimization (temperature, darkness, noise)",
+        "Goal": "Create sleep-conducive bedroom"
+      },
+      "Phase2": {
+        "Duration": "Week 2-3",
+        "Focus": "Establish consistent sleep schedule",
+        "Goal": "Synchronize circadian rhythm"
+      },
+      "Phase3": {
+        "Duration": "Week 4-6",
+        "Focus": "Implement pre-sleep routine",
+        "Goal": "Develop reliable sleep onset process"
+      },
+      "Phase4": {
+        "Duration": "Week 7+",
+        "Focus": "Refine based on sleep diary data",
+        "Goal": "Optimize personal sleep strategy"
+      }
+    },
+    "CognitiveBenefitTimeline": {
+      "Week1_2": "Improved daytime alertness, easier morning waking",
+      "Week3_4": "Sharper focus and decision-making",
+      "Month2": "Improved memory consolidation, better reaction time",
+      "Month3": "Noticeable cognitive enhancement, reduced processing delays"
+    }
+  }
+}

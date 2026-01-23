@@ -1,360 +1,322 @@
-import json
+"""
+Qdrant-based vector store for cognitive health knowledge base
+Supports both in-memory and server modes
+"""
+
 import os
-import pickle
-import numpy as np
-import faiss
-from sentence_transformers import SentenceTransformer
-from typing import List, Dict, Tuple, Optional
-import logging
-from dotenv import load_dotenv
+import json
+from pathlib import Path
+from typing import List, Dict
+from qdrant_client import QdrantClient
+from qdrant_client.models import Distance, VectorParams, PointStruct
+from openai import OpenAI
 
-# Load environment variables
-load_dotenv()
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 class VectorStore:
-    """FAISS-based vector store for multivitamin knowledge retrieval."""
+    def __init__(self):
+        self.client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+        self.embedding_model = os.getenv('EMBEDDING_MODEL', 'text-embedding-3-small')
+        
+        # Qdrant configuration
+        qdrant_url = os.getenv('QDRANT_URL', '').strip()
+        qdrant_api_key = os.getenv('QDRANT_API_KEY', '').strip()
+        self.collection_name = os.getenv('QDRANT_COLLECTION', 'cognitive_health')
+        
+        # Initialize Qdrant client (in-memory if no URL provided)
+        if qdrant_url:
+            self.qdrant_client = QdrantClient(
+                url=qdrant_url,
+                api_key=qdrant_api_key if qdrant_api_key else None
+            )
+            print(f"Connected to Qdrant at {qdrant_url}")
+        else:
+            self.qdrant_client = QdrantClient(":memory:")
+            print("Using in-memory Qdrant")
+        
+        # Initialize collection
+        self._initialize_collection()
+        
+        # Load knowledge base
+        self._load_knowledge_base()
     
-    def __init__(self, knowledge_base_dir: str = "knowledge_base"):
-        """
-        Initialize the vector store.
-        
-        Args:
-            knowledge_base_dir: Directory to store vector index and metadata
-        """
-        self.knowledge_base_dir = knowledge_base_dir
-        self.index_path = os.path.join(knowledge_base_dir, "faiss_index.bin")
-        self.metadata_path = os.path.join(knowledge_base_dir, "metadata.pkl")
-        self.documents_path = os.path.join(knowledge_base_dir, "documents.pkl")
-        
-        # Set up HuggingFace authentication
-        hf_token = os.getenv('HF_TOKEN')
-        if hf_token:
-            os.environ['HUGGINGFACE_HUB_TOKEN'] = hf_token
-        
-        # Initialize sentence transformer for embeddings
+    def _initialize_collection(self):
+        """Create or get Qdrant collection"""
         try:
-            # Try the correct model name first
-            self.encoder = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2', use_auth_token=hf_token)
-        except Exception as e:
-            logger.warning(f"Failed to load sentence-transformers/all-MiniLM-L6-v2, trying alternative: {e}")
-            try:
-                self.encoder = SentenceTransformer('all-MiniLM-L6-v2', use_auth_token=hf_token)
-            except Exception as e2:
-                logger.warning(f"Failed to load all-MiniLM-L6-v2, using fallback: {e2}")
-                # Use a reliable fallback model
-                self.encoder = SentenceTransformer('paraphrase-MiniLM-L6-v2', use_auth_token=hf_token)
-                
-        self.embedding_dim = 384  # Dimension for MiniLM models
-        
-        # Initialize FAISS index
-        self.index = None
-        self.documents = []
-        self.metadata = []
-        
-        # Create knowledge base directory if it doesn't exist
-        os.makedirs(knowledge_base_dir, exist_ok=True)
-        
-        # Load existing index if available
-        self._load_index()
+            # Try to get existing collection
+            self.qdrant_client.get_collection(self.collection_name)
+            print(f"Using existing Qdrant collection: {self.collection_name}")
+        except Exception:
+            # Create new collection if it doesn't exist
+            self.qdrant_client.create_collection(
+                collection_name=self.collection_name,
+                vectors_config=VectorParams(size=1536, distance=Distance.COSINE)
+            )
+            print(f"Created new Qdrant collection: {self.collection_name}")
     
-    def _create_documents_from_knowledge(self, knowledge_data: Dict) -> List[Dict]:
-        """
-        Convert multivitamin knowledge data into searchable documents.
+    def _load_knowledge_base(self):
+        """Load knowledge from JSON files and index them"""
+        data_dir = 'data'
         
-        Args:
-            knowledge_data: Loaded multivitamin knowledge JSON
-            
-        Returns:
-            List of document dictionaries
-        """
+        knowledge_files = [
+            'vascular_health_rules.json',
+            'lifestyle_rules.json',
+            'sleep_rules.json'
+        ]
+        
         documents = []
+        points = []
+        point_id = 1
         
-        # Process individual multivitamins
-        for vitamin in knowledge_data.get('multivitamins', []):
-            # Main vitamin document
-            doc_text = f"""
-            Vitamin: {vitamin['name']}
-            Category: {vitamin['category']}
-            Description: {vitamin['description']}
-            Cognitive Benefits: {', '.join(vitamin['cognitive_benefits'])}
-            Target Conditions: {', '.join(vitamin['target_conditions'])}
-            Dosage: {vitamin['dosage']}
-            Evidence Level: {vitamin['evidence_level']}
-            Sources: {', '.join(vitamin['sources'])}
-            """
-            
-            documents.append({
-                'text': doc_text.strip(),
-                'type': 'vitamin',
-                'name': vitamin['name'],
-                'category': vitamin['category'],
-                'metadata': vitamin
-            })
-            
-            # Create separate documents for each cognitive benefit
-            for benefit in vitamin['cognitive_benefits']:
-                benefit_doc = f"""
-                {vitamin['name']} provides cognitive benefit: {benefit}
-                Category: {vitamin['category']}
-                Description: {vitamin['description']}
-                Dosage: {vitamin['dosage']}
-                Evidence: {vitamin['evidence_level']}
-                """
+        for filename in knowledge_files:
+            filepath = os.path.join(data_dir, filename)
+            if os.path.exists(filepath):
+                try:
+                    with open(filepath, 'r') as f:
+                        data = json.load(f)
+                    
+                    domain = filename.replace('_rules.json', '')
+                    
+                    # Process based on file type
+                    if isinstance(data, dict):
+                        for key, content in data.items():
+                            if isinstance(content, dict):
+                                text = self._format_content(content, key)
+                            else:
+                                text = str(content)
+                            
+                            documents.append({
+                                'text': text,
+                                'domain': domain,
+                                'source': filename,
+                                'key': key
+                            })
+                    
+                    elif isinstance(data, list):
+                        for item in data:
+                            if isinstance(item, dict):
+                                text = self._format_content(item, '')
+                            else:
+                                text = str(item)
+                            
+                            documents.append({
+                                'text': text,
+                                'domain': domain,
+                                'source': filename
+                            })
                 
-                documents.append({
-                    'text': benefit_doc.strip(),
-                    'type': 'benefit',
-                    'vitamin_name': vitamin['name'],
-                    'benefit': benefit,
-                    'metadata': vitamin
-                })
-            
-            # Create documents for target conditions
-            for condition in vitamin['target_conditions']:
-                condition_doc = f"""
-                For {condition.replace('_', ' ')}: {vitamin['name']} is recommended
-                Benefits: {', '.join(vitamin['cognitive_benefits'])}
-                Dosage: {vitamin['dosage']}
-                Category: {vitamin['category']}
-                Evidence Level: {vitamin['evidence_level']}
-                """
-                
-                documents.append({
-                    'text': condition_doc.strip(),
-                    'type': 'condition',
-                    'condition': condition,
-                    'vitamin_name': vitamin['name'],
-                    'metadata': vitamin
-                })
+                except Exception as e:
+                    print(f"Error loading {filename}: {e}")
         
-        # Process combinations
-        for combo in knowledge_data.get('combinations', []):
-            combo_doc = f"""
-            Combination: {combo['name']}
-            Components: {', '.join(combo['components'])}
-            Target: {combo['target']}
-            Synergy: {combo['synergy']}
-            """
-            
-            documents.append({
-                'text': combo_doc.strip(),
-                'type': 'combination',
-                'name': combo['name'],
-                'components': combo['components'],
-                'metadata': combo
-            })
-        
-        return documents
+        # Embed and index all documents
+        if documents:
+            print(f"Indexing {len(documents)} documents...")
+            self._embed_and_index_documents(documents)
     
-    def build_index(self, data_dir: str = "data"):
+    def _format_content(self, content: dict, key: str) -> str:
+        """Format dictionary content into readable text"""
+        lines = []
+        if key:
+            lines.append(f"{key}:")
+        
+        for k, v in content.items():
+            if isinstance(v, dict):
+                lines.append(f"  {k}:")
+                for sub_k, sub_v in v.items():
+                    lines.append(f"    {sub_k}: {sub_v}")
+            elif isinstance(v, list):
+                lines.append(f"  {k}: {', '.join(map(str, v))}")
+            else:
+                lines.append(f"  {k}: {v}")
+        
+        return '\n'.join(lines)
+    
+    def _embed_and_index_documents(self, documents: List[Dict]):
+        """Embed documents and index them in Qdrant"""
+        try:
+            # Extract texts for embedding
+            texts = [doc['text'] for doc in documents]
+            
+            # Get embeddings from OpenAI
+            embeddings = self.client.embeddings.create(
+                model=self.embedding_model,
+                input=texts
+            ).data
+            
+            # Prepare points for Qdrant
+            points = []
+            for i, (doc, embedding) in enumerate(zip(documents, embeddings)):
+                point_id = i + 1
+                points.append(
+                    PointStruct(
+                        id=point_id,
+                        vector=embedding.embedding,
+                        payload={
+                            'text': doc['text'],
+                            'domain': doc['domain'],
+                            'source': doc['source'],
+                            'key': doc.get('key', '')
+                        }
+                    )
+                )
+            
+            # Upload to Qdrant
+            self.qdrant_client.upsert(
+                collection_name=self.collection_name,
+                points=points
+            )
+            
+            print(f"Indexed {len(points)} documents in Qdrant")
+        
+        except Exception as e:
+            print(f"Error embedding and indexing documents: {e}")
+    
+    def search(self, query: str, k: int = 5, threshold: float = 0.3) -> List[Dict]:
         """
-        Build FAISS index from multivitamin knowledge data.
-        
-        Args:
-            data_dir: Directory containing knowledge JSON files
-        """
-        logger.info("Building FAISS index from knowledge base...")
-        
-        # Load multivitamin knowledge
-        knowledge_path = os.path.join(data_dir, "multivitamin_knowledge.json")
-        with open(knowledge_path, 'r', encoding='utf-8') as f:
-            knowledge_data = json.load(f)
-        
-        # Create documents
-        documents = self._create_documents_from_knowledge(knowledge_data)
-        
-        # Extract texts for embedding
-        texts = [doc['text'] for doc in documents]
-        
-        # Generate embeddings
-        logger.info(f"Generating embeddings for {len(texts)} documents...")
-        embeddings = self.encoder.encode(texts, show_progress_bar=True)
-        
-        # Create FAISS index
-        self.index = faiss.IndexFlatIP(self.embedding_dim)  # Inner product for cosine similarity
-        
-        # Normalize embeddings for cosine similarity
-        faiss.normalize_L2(embeddings)
-        
-        # Add embeddings to index
-        self.index.add(embeddings.astype('float32'))
-        
-        # Store documents and metadata
-        self.documents = documents
-        self.metadata = [doc['metadata'] for doc in documents]
-        
-        # Save index and metadata
-        self._save_index()
-        
-        logger.info(f"FAISS index built successfully with {len(documents)} documents")
-    
-    def _save_index(self):
-        """Save FAISS index and metadata to disk."""
-        if self.index is not None:
-            faiss.write_index(self.index, self.index_path)
-            
-            with open(self.metadata_path, 'wb') as f:
-                pickle.dump(self.metadata, f)
-            
-            with open(self.documents_path, 'wb') as f:
-                pickle.dump(self.documents, f)
-            
-            logger.info("Index and metadata saved successfully")
-    
-    def _load_index(self):
-        """Load FAISS index and metadata from disk."""
-        if os.path.exists(self.index_path) and os.path.exists(self.metadata_path):
-            try:
-                self.index = faiss.read_index(self.index_path)
-                
-                with open(self.metadata_path, 'rb') as f:
-                    self.metadata = pickle.load(f)
-                
-                with open(self.documents_path, 'rb') as f:
-                    self.documents = pickle.load(f)
-                
-                logger.info(f"Loaded existing index with {len(self.documents)} documents")
-            except Exception as e:
-                logger.warning(f"Failed to load existing index: {e}")
-                self.index = None
-                self.documents = []
-                self.metadata = []
-    
-    def search(self, query: str, k: int = 5) -> List[Dict]:
-        """
-        Search for relevant documents using semantic similarity.
+        Search for similar documents using Qdrant
         
         Args:
             query: Search query
-            k: Number of top results to return
-            
+            k: Number of results to return
+            threshold: Minimum similarity threshold
+        
         Returns:
-            List of relevant documents with similarity scores
+            List of similar documents with metadata
         """
-        if self.index is None or len(self.documents) == 0:
-            logger.warning("Index not built. Please build index first.")
+        try:
+            # Get query embedding
+            query_embedding = self.client.embeddings.create(
+                model=self.embedding_model,
+                input=[query]
+            ).data[0].embedding
+            
+            # Search Qdrant
+            search_results = self.qdrant_client.search(
+                collection_name=self.collection_name,
+                query_vector=query_embedding,
+                limit=k,
+                score_threshold=threshold
+            )
+            
+            results = []
+            for hit in search_results:
+                results.append({
+                    'content': hit.payload.get('text', ''),
+                    'similarity': hit.score,
+                    'metadata': {
+                        'domain': hit.payload.get('domain', ''),
+                        'source': hit.payload.get('source', ''),
+                        'key': hit.payload.get('key', '')
+                    }
+                })
+            
+            # If no results above threshold, lower it and try again
+            if len(results) == 0:
+                search_results = self.qdrant_client.search(
+                    collection_name=self.collection_name,
+                    query_vector=query_embedding,
+                    limit=k,
+                    score_threshold=0.1
+                )
+                
+                for hit in search_results:
+                    results.append({
+                        'content': hit.payload.get('text', ''),
+                        'similarity': hit.score,
+                        'metadata': {
+                            'domain': hit.payload.get('domain', ''),
+                            'source': hit.payload.get('source', ''),
+                            'key': hit.payload.get('key', '')
+                        }
+                    })
+            
+            return results[:k]
+        
+        except Exception as e:
+            print(f"Error searching: {e}")
             return []
-        
-        # Encode query
-        query_embedding = self.encoder.encode([query])
-        
-        # Normalize for cosine similarity
-        faiss.normalize_L2(query_embedding)
-        
-        # Search
-        scores, indices = self.index.search(query_embedding.astype('float32'), k)
-        
-        # Prepare results
-        results = []
-        for score, idx in zip(scores[0], indices[0]):
-            if idx < len(self.documents):
-                result = self.documents[idx].copy()
-                result['similarity_score'] = float(score)
-                results.append(result)
-        
-        return results
     
-    def search_by_condition(self, condition: str, k: int = 3) -> List[Dict]:
+    def search_by_domain(self, domain: str, k: int = 5) -> List[Dict]:
+        """Search documents by domain"""
+        try:
+            # Scroll through collection with domain filter
+            points, _ = self.qdrant_client.scroll(
+                collection_name=self.collection_name,
+                query_filter={
+                    "must": [
+                        {
+                            "key": "domain",
+                            "match": {
+                                "value": domain
+                            }
+                        }
+                    ]
+                },
+                limit=k
+            )
+            
+            results = []
+            for point in points:
+                results.append({
+                    'content': point.payload.get('text', ''),
+                    'metadata': {
+                        'domain': point.payload.get('domain', ''),
+                        'source': point.payload.get('source', ''),
+                        'key': point.payload.get('key', '')
+                    }
+                })
+            
+            return results
+        
+        except Exception as e:
+            print(f"Error searching by domain: {e}")
+            return []
+    
+    def get_recommendations(self, user_profile: Dict) -> List[Dict]:
         """
-        Search for vitamins that target a specific condition.
+        Get personalized recommendations based on user profile
         
         Args:
-            condition: Target condition (e.g., "memory_loss", "attention_deficit")
-            k: Number of results to return
-            
+            user_profile: Dictionary with user health information
+        
         Returns:
-            List of relevant vitamin recommendations
+            List of relevant recommendations
         """
-        query = f"vitamins for {condition.replace('_', ' ')} cognitive impairment treatment"
-        results = self.search(query, k)
+        recommendations = []
         
-        # Filter for vitamin and condition type documents
-        filtered_results = [r for r in results if r['type'] in ['vitamin', 'condition']]
+        # Build search queries based on profile
+        queries = []
         
-        return filtered_results[:k]
-    
-    def search_by_cognitive_domain(self, domain: str, k: int = 3) -> List[Dict]:
-        """
-        Search for vitamins that support a specific cognitive domain.
+        if user_profile.get('processing_speed_low'):
+            queries.append("processing speed cognitive decline brain health")
         
-        Args:
-            domain: Cognitive domain (e.g., "memory", "attention", "processing_speed")
-            k: Number of results to return
-            
-        Returns:
-            List of relevant vitamin recommendations
-        """
-        query = f"vitamins supplements for {domain.replace('_', ' ')} cognitive function improvement"
-        results = self.search(query, k)
+        if user_profile.get('hypertension'):
+            queries.append("hypertension blood pressure SPRINT MIND cognitive")
         
-        return results[:k]
-    
-    def get_vitamin_details(self, vitamin_name: str) -> Optional[Dict]:
-        """
-        Get detailed information about a specific vitamin.
+        if user_profile.get('high_cholesterol'):
+            queries.append("cholesterol lipid management cardiovascular cognitive")
         
-        Args:
-            vitamin_name: Name of the vitamin
-            
-        Returns:
-            Vitamin details dictionary or None if not found
-        """
-        for doc in self.documents:
-            if doc['type'] == 'vitamin' and doc['name'].lower() == vitamin_name.lower():
-                return doc['metadata']
+        if user_profile.get('diabetes'):
+            queries.append("diabetes glucose control cognitive health")
         
-        return None
-    
-    def get_combinations(self, vitamin_names: List[str]) -> List[Dict]:
-        """
-        Find relevant vitamin combinations based on individual vitamins.
+        if user_profile.get('sedentary'):
+            queries.append("physical activity exercise aerobic cognitive benefit")
         
-        Args:
-            vitamin_names: List of vitamin names
-            
-        Returns:
-            List of relevant combination documents
-        """
-        combinations = []
-        for doc in self.documents:
-            if doc['type'] == 'combination':
-                # Check if any of the requested vitamins are in this combination
-                combo_components = [comp.lower() for comp in doc['components']]
-                if any(vit.lower() in comp.lower() for vit in vitamin_names for comp in combo_components):
-                    combinations.append(doc)
+        if user_profile.get('poor_sleep'):
+            queries.append("sleep quality sleep optimization cognitive function")
         
-        return combinations
-    
-    def rebuild_index_if_needed(self):
-        """Rebuild index if it doesn't exist."""
-        if self.index is None or len(self.documents) == 0:
-            logger.info("No existing index found. Building new index...")
-            self.build_index()
+        # Search for each query and collect results
+        seen_content = set()
+        for query in queries:
+            results = self.search(query, k=3)
+            for result in results:
+                content_hash = hash(result['content'])
+                if content_hash not in seen_content:
+                    seen_content.add(content_hash)
+                    recommendations.append(result)
+        
+        return recommendations
 
-if __name__ == "__main__":
-    # Initialize and build vector store
-    vector_store = VectorStore()
-    
-    # Build index if needed
-    if vector_store.index is None:
-        vector_store.build_index()
-    
-    # Test search functionality
-    test_queries = [
-        "vitamins for memory problems",
-        "supplements for attention deficit",
-        "cognitive enhancement nutrients",
-        "brain fog treatment"
-    ]
-    
-    print("Testing vector store search:")
-    for query in test_queries:
-        print(f"\nQuery: {query}")
-        results = vector_store.search(query, k=3)
-        for i, result in enumerate(results, 1):
-            print(f"{i}. {result.get('vitamin_name', result.get('name', 'Unknown'))} "
-                  f"(Score: {result['similarity_score']:.3f})")
-            print(f"   Type: {result['type']}")
+
+def initialize_vector_store() -> VectorStore:
+    """Initialize and return vector store"""
+    return VectorStore()
