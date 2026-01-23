@@ -14,6 +14,7 @@ import streamlit as st
 import json
 import sys
 import os
+import base64
 from pathlib import Path
 from datetime import datetime
 from dotenv import load_dotenv
@@ -30,16 +31,25 @@ from domain_chatbot import initialize_chatbot
 
 # Configure Streamlit with logo from assets
 logo_path = os.path.join(os.path.dirname(__file__), 'assets', 'logo.png')
-page_icon = None
-if os.path.exists(logo_path):
-    page_icon = Image.open(logo_path)
+favicon_path = os.path.join(os.path.dirname(__file__), 'assets', 'favicon.ico')
 
 st.set_page_config(
     page_title="ReCOGnAIze Cognitive Health Companion",
-    page_icon=page_icon,
+    page_icon="🧠",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Inject favicon from assets using custom HTML in head
+if os.path.exists(favicon_path):
+    favicon_data = open(favicon_path, 'rb').read()
+    b64_favicon = base64.b64encode(favicon_data).decode()
+    st.markdown(
+        f"""
+        <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,{b64_favicon}">
+        """,
+        unsafe_allow_html=True
+    )
 
 # Custom CSS - Clean, professional design without emojis
 st.markdown("""
