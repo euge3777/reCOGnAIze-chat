@@ -15,6 +15,7 @@ import json
 import sys
 import os
 import base64
+import uuid
 from pathlib import Path
 from datetime import datetime
 from dotenv import load_dotenv
@@ -28,6 +29,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
 from recommendation_engine import RecommendationEngine
 from domain_chatbot import initialize_chatbot
+from file_processor import FileProcessor
+from report_summarizer import summarize_report
 
 # Configure Streamlit with logo from assets
 logo_path = os.path.join(os.path.dirname(__file__), 'assets', 'logo.png')
@@ -35,7 +38,6 @@ favicon_path = os.path.join(os.path.dirname(__file__), 'assets', 'favicon.ico')
 
 st.set_page_config(
     page_title="ReCOGnAIze Cognitive Health Companion",
-    page_icon="🧠",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -177,6 +179,78 @@ def display_logo():
         st.image(logo_path, width=200, use_container_width=False)
 
 
+def get_chat_session_dir() -> Path:
+    """Return directory path where chat sessions are stored on disk."""
+    base_dir = Path(os.path.dirname(__file__)) / "data" / "chat_sessions"
+    base_dir.mkdir(parents=True, exist_ok=True)
+    return base_dir
+
+
+def get_or_create_chat_session_id() -> str:
+    """Get chat session ID from URL query params or create a new one.
+
+    This approximates browser-local persistence: as long as the user
+    returns to the same URL with the session_id parameter, their
+    conversation is restored from disk.
+    """
+    params = st.query_params
+
+    # Handle both string and list forms for safety
+    existing = params.get("session_id") if hasattr(params, "get") else None
+    if isinstance(existing, list) and existing:
+        return existing[0]
+    if isinstance(existing, str) and existing:
+        return existing
+
+    session_id = uuid.uuid4().hex
+    try:
+        # New, non-experimental API for setting query params
+        params["session_id"] = session_id
+    except Exception:
+        # Fallback: best-effort, but don't break the app if this fails
+        pass
+    return session_id
+
+
+def load_chat_history(session_id: str) -> None:
+    """Load chat history for a given session ID into session_state."""
+    session_dir = get_chat_session_dir()
+    chat_file = session_dir / f"{session_id}.json"
+
+    if chat_file.exists():
+        try:
+            with chat_file.open("r", encoding="utf-8") as f:
+                messages = json.load(f)
+            if isinstance(messages, list):
+                st.session_state.chat_messages = messages
+        except Exception:
+            # If anything goes wrong, start with empty history
+            st.session_state.chat_messages = []
+
+
+def save_chat_history(session_id: str) -> None:
+    """Persist current chat history for a given session ID to disk."""
+    session_dir = get_chat_session_dir()
+    chat_file = session_dir / f"{session_id}.json"
+
+    try:
+        with chat_file.open("w", encoding="utf-8") as f:
+            json.dump(st.session_state.chat_messages, f, ensure_ascii=False, indent=2)
+    except Exception:
+        # Persistence failures should not break the app flow
+        pass
+
+
+def ensure_chat_session() -> None:
+    """Ensure chat session id and history are initialized in session_state."""
+    if 'chat_session_id' not in st.session_state:
+        st.session_state.chat_session_id = get_or_create_chat_session_id()
+
+    if 'chat_messages' not in st.session_state:
+        st.session_state.chat_messages = []
+        load_chat_history(st.session_state.chat_session_id)
+
+
 def initialize_session():
     """Initialize session state variables."""
     if 'engine' not in st.session_state:
@@ -202,8 +276,8 @@ def initialize_session():
     if 'recommendations' not in st.session_state:
         st.session_state.recommendations = None
     
-    if 'chat_messages' not in st.session_state:
-        st.session_state.chat_messages = []
+    # Initialize chat persistence (session id + history)
+    ensure_chat_session()
 
 
 def phase_pre_assessment():
@@ -671,6 +745,11 @@ def chatbot_interface():
     research study and validated health frameworks.
     """)
     
+    # Display uploaded files info
+    if 'uploaded_files' in st.session_state and st.session_state.uploaded_files:
+        file_list = ", ".join([f["filename"] for f in st.session_state.uploaded_files])
+        st.info(f"📎 **Files loaded in context:** {file_list}")
+    
     if st.session_state.chatbot is None:
         st.error("Chatbot failed to initialize. Please refresh the page.")
         return
@@ -688,7 +767,38 @@ def chatbot_interface():
                     st.write(message["content"])
     
     # Input area
-    col1, col2 = st.columns([0.92, 0.08])
+    # Style the file uploader so the dropzone is compact
+    # and uses the custom SVG icon from assets/upload.svg.
+    st.markdown("""
+    <style>
+    [data-testid="stFileUploadDropzone"] {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        width: 40px !important;
+        height: 40px !important;
+        margin: 0 auto !important;
+    }
+    /* Hide the default text/content but keep the input clickable */
+    [data-testid="stFileUploadDropzone"] > div:first-child {
+        opacity: 0 !important;
+    }
+    /* Show the custom upload SVG as the visual button */
+    [data-testid="stFileUploadDropzone"]::before {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 40px;
+        background-image: url("assets/upload.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        margin: 0 auto;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns([0.85, 0.065, 0.085])
     
     with col1:
         user_input = st.text_input(
@@ -699,33 +809,119 @@ def chatbot_interface():
         )
     
     with col2:
-        send_button = st.button("➜", use_container_width=True, help="Send message")
+        send_button = st.button("Send", help="Send message")
+    
+    with col3:
+        uploaded_files = st.file_uploader(
+            "Upload",
+            accept_multiple_files=True,
+            type=['txt', 'pdf', 'csv', 'json', 'xlsx', 'xls'],
+            key='chatbot_file_uploader',
+            label_visibility="collapsed"
+        )
+        if uploaded_files:
+            # Initialize file storage in session state if needed
+            if 'uploaded_files' not in st.session_state:
+                st.session_state.uploaded_files = []
+            
+            # Process new files
+            for uploaded_file in uploaded_files:
+                existing_filenames = [f['filename'] for f in st.session_state.uploaded_files]
+                if uploaded_file.name not in existing_filenames:
+                    try:
+                        file_data = FileProcessor.process_uploaded_file(uploaded_file)
+                        if file_data:
+                            # If this is a PDF report, run the
+                            # multi-step summarization pipeline and
+                            # keep only the overall summary as the
+                            # content injected into the chat model.
+                            if file_data.get("file_type") == ".pdf" and file_data.get("content"):
+                                with st.spinner(f"Summarizing {uploaded_file.name} for chat context..."):
+                                    try:
+                                        summary_data = summarize_report(
+                                            file_data["content"],
+                                            target_chunks=6,
+                                        )
+                                        # Preserve full extracted text
+                                        # for debugging/inspection.
+                                        file_data["raw_content"] = file_data["content"]
+                                        file_data["chunk_summaries"] = summary_data.get("chunk_summaries", [])
+                                        file_data["summary"] = summary_data.get("overall_summary", "")
+                                        if file_data["summary"]:
+                                            file_data["content"] = file_data["summary"]
+                                    except Exception:
+                                        st.warning(
+                                            f"Could not summarize {uploaded_file.name}; using extracted text instead."
+                                        )
+
+                            st.session_state.uploaded_files.append(file_data)
+                            st.success(f"{uploaded_file.name} uploaded")
+                    except Exception:
+                        st.error(f"Error processing {uploaded_file.name}")
     
     # Process user input
     if send_button and user_input:
+        # Build augmented prompt with file context
+        augmented_input = user_input
+        files_included = False
+        
+        # Store for debug display
+        st.session_state.last_augmented_input = None
+        
+        if 'uploaded_files' in st.session_state and st.session_state.uploaded_files:
+            try:
+                augmented_input += "\n\n" + "="*60
+                augmented_input += "\n[CONTEXT FROM UPLOADED FILES]\n"
+                augmented_input += "="*60 + "\n\n"
+                
+                for file_data in st.session_state.uploaded_files:
+                    formatted_content = FileProcessor.format_file_content_for_prompt(file_data)
+                    augmented_input += formatted_content + "\n\n"
+                    files_included = True
+                
+                augmented_input += "="*60 + "\n"
+                augmented_input += "[END OF FILE CONTEXT]\n"
+                augmented_input += "="*60
+                st.session_state.last_augmented_input = augmented_input
+            except Exception as e:
+                st.warning(f"Could not include file context: {str(e)}")
+                # Continue with original input if file processing fails
+        
         # Add user message to history
         st.session_state.chat_messages.append({
             "role": "user",
             "content": user_input
         })
+        # Persist updated history
+        if 'chat_session_id' in st.session_state:
+            save_chat_history(st.session_state.chat_session_id)
         
         # Check domain relevance
-        if not st.session_state.chatbot.check_domain_relevance(user_input):
+        is_relevant = st.session_state.chatbot.check_domain_relevance(user_input)
+
+        # If the user has uploaded a ReCOGnAIze report, allow more generic
+        # questions like "tell me more about my results" to pass through
+        # even if they don't contain explicit domain keywords.
+        has_uploaded_files = bool(st.session_state.get('uploaded_files'))
+
+        if not is_relevant and not has_uploaded_files:
             response = """I'm designed to answer questions about cognitive health, vascular cognitive impairment (VCI), 
-brain-protective lifestyle interventions, and related topics. Your question seems to be outside this domain.
+    brain-protective lifestyle interventions, and related topics. Your question seems to be outside this domain.
 
-Could you rephrase your question to focus on:
-- Cognitive health and brain function
-- Vascular risk factors and their impact on cognition
-- Lifestyle interventions (diet, exercise, sleep)
-- ReCOGnAIze assessment and VCI understanding
+    Could you rephrase your question to focus on:
+    - Cognitive health and brain function
+    - Vascular risk factors and their impact on cognition
+    - Lifestyle interventions (diet, exercise, sleep)
+    - ReCOGnAIze assessment and VCI understanding
 
-Feel free to ask again!"""
+    Feel free to ask again!"""
         else:
-            # Generate response with knowledge base context
+            # Generate response with knowledge base context and file context
             with st.spinner("Thinking..."):
+                if files_included:
+                    st.info("Using uploaded file context in this response")
                 response = st.session_state.chatbot.generate_response(
-                    user_input,
+                    augmented_input,
                     conversation_history=st.session_state.chat_messages[:-1]  # Exclude the just-added user message
                 )
         
@@ -734,14 +930,34 @@ Feel free to ask again!"""
             "role": "assistant",
             "content": response
         })
+        # Persist updated history
+        if 'chat_session_id' in st.session_state:
+            save_chat_history(st.session_state.chat_session_id)
         
         # Force rerun to display new messages
         st.rerun()
     
-    # Clear chat button
-    if st.button("Clear Conversation", help="Start a new conversation"):
-        st.session_state.chat_messages = []
-        st.rerun()
+    # Clear buttons
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Clear Conversation", help="Start a new conversation", use_container_width=True):
+            st.session_state.chat_messages = []
+            # Also clear persisted history for this session
+            if 'chat_session_id' in st.session_state:
+                session_dir = get_chat_session_dir()
+                chat_file = session_dir / f"{st.session_state.chat_session_id}.json"
+                try:
+                    if chat_file.exists():
+                        chat_file.unlink()
+                except Exception:
+                    pass
+            st.rerun()
+    
+    with col2:
+        if 'uploaded_files' in st.session_state and st.session_state.uploaded_files:
+            if st.button("Clear Uploaded Files", help="Remove all files from context", use_container_width=True):
+                st.session_state.uploaded_files = []
+                st.rerun()
 
 
 def main():
@@ -776,6 +992,49 @@ def main():
         
         elif st.session_state.phase == 'post-assessment':
             phase_post_assessment()
+    
+    # Debug sidebar - Show what's being sent to the model
+    with st.sidebar:
+        st.divider()
+        with st.expander("🔍 View Context Sent to Model", expanded=False):
+            if 'last_augmented_input' in st.session_state and st.session_state.last_augmented_input:
+                st.subheader("Full Augmented Prompt")
+                st.text_area(
+                    "This is what the chatbot receives (your question + file context):",
+                    value=st.session_state.last_augmented_input,
+                    height=250,
+                    disabled=True
+                )
+                
+                # Show stats
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.metric("Characters", len(st.session_state.last_augmented_input))
+                with col2:
+                    st.metric("Approx Tokens", len(st.session_state.last_augmented_input) // 4)
+                
+                # Check if file context is included
+                if "[CONTEXT FROM UPLOADED FILES]" in st.session_state.last_augmented_input:
+                    st.success("✓ File context included & sent to model")
+                else:
+                    st.warning("ℹ No file context in this prompt")
+
+                # Offer a JSON download of the payload that the model sees
+                messages_payload = {
+                    "system": getattr(st.session_state.chatbot, "system_prompt", ""),
+                    "conversation_history": st.session_state.chat_messages[:-1] if st.session_state.get("chat_messages") else [],
+                    "user_augmented_input": st.session_state.last_augmented_input,
+                }
+
+                json_str = json.dumps(messages_payload, ensure_ascii=False, indent=2)
+                st.download_button(
+                    label="Download JSON of model input",
+                    data=json_str,
+                    file_name="model_input_debug.json",
+                    mime="application/json"
+                )
+            else:
+                st.info("💡 Send a message to see what's being sent to the model.")
     
     # Footer
     st.write("---")

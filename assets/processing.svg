@@ -1,0 +1,5 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <circle cx="12" cy="12" r="10" stroke="#E5E7EB" stroke-width="2" fill="none"/>
+  <circle cx="12" cy="12" r="10" stroke="#6366F1" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="31.4 31.4" transform="rotate(-90 12 12)"/>
+  <path d="M12 8v5l3 3" stroke="#6366F1" stroke-width="2" stroke-linecap="round"/>
+</svg>

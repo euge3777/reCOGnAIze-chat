@@ -96,4 +96,5 @@ cython_debug/
 # Windows
 Thumbs.db
 ehthumbs.db
-Desktop.ini
+Desktop.ini.streamlit/secrets.toml
+.streamlit/secrets.toml

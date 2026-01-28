@@ -1,0 +1,10 @@
+[
+  {
+    "role": "user",
+    "content": "tell me more about my results"
+  },
+  {
+    "role": "assistant",
+    "content": "I'm designed to answer questions about cognitive health, vascular cognitive impairment (VCI), \nbrain-protective lifestyle interventions, and related topics. Your question seems to be outside this domain.\n\nCould you rephrase your question to focus on:\n- Cognitive health and brain function\n- Vascular risk factors and their impact on cognition\n- Lifestyle interventions (diet, exercise, sleep)\n- ReCOGnAIze assessment and VCI understanding\n\nFeel free to ask again!"
+  }
+]

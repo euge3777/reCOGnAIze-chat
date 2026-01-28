@@ -4,8 +4,9 @@ Provides answers within the cognitive health and vascular risk management domain
 """
 
 import os
-from typing import List, Dict
+from typing import List, Dict, Optional, Any
 from openai import OpenAI
+from openai.types.chat import ChatCompletionMessageParam
 import sys
 
 # Import vector store
@@ -74,14 +75,22 @@ IMPORTANT CONSTRAINTS:
                 metadata = result.get('metadata', {})
                 source = metadata.get('domain', 'unknown')
                 context_parts.append(f"[{source}]: {result['content']}")
-            
-            return "\n\n".join(context_parts)
+
+            context = "\n\n".join(context_parts)
+
+            # Hard cap on context length to avoid blowing up the
+            # total token count when combined with uploaded reports
+            # and conversation history.
+            if len(context) > 2000:
+                context = context[:2000] + "\n\n[... knowledge base context truncated for length ...]"
+
+            return context
         
         except Exception as e:
             print(f"Error retrieving context: {e}")
             return ""
     
-    def generate_response(self, query: str, conversation_history: List[Dict] = None) -> str:
+    def generate_response(self, query: str, conversation_history: Optional[List[Dict]] = None) -> str:
         """
         Generate a response to the user query using the knowledge base
         
@@ -97,11 +106,17 @@ IMPORTANT CONSTRAINTS:
             context = self.get_context(query, k=5)
             
             # Build messages for the API call
-            messages = []
-            
-            # Add conversation history if provided
+            messages: List[ChatCompletionMessageParam] = []
+
+            # Add a limited slice of conversation history so long
+            # chats don't exceed the model's context window.
             if conversation_history:
-                messages.extend(conversation_history)
+                recent_history = conversation_history[-6:]
+                for msg in recent_history:
+                    messages.append({
+                        "role": msg.get("role", "user"),  # type: ignore
+                        "content": msg.get("content", "")  # type: ignore
+                    })
             
             # Add current query with context
             if context:
@@ -117,21 +132,24 @@ Please provide a helpful, evidence-based answer that addresses the question dire
                 user_message = query
             
             messages.append({
-                "role": "user",
-                "content": user_message
+                "role": "user",  # type: ignore
+                "content": user_message  # type: ignore
             })
             
-            # Call OpenAI API
+            # Call OpenAI API. We keep max_tokens modest to avoid
+            # exceeding the model's total context window when combined
+            # with longer conversations and uploaded report content.
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": self.system_prompt}
+                    {"role": "system", "content": self.system_prompt}  # type: ignore
                 ] + messages,
                 temperature=0.7,
-                max_tokens=1500
+                max_tokens=800
             )
             
-            return response.choices[0].message.content
+            result = response.choices[0].message.content
+            return result if result else "I couldn't generate a response. Please try again."
         
         except Exception as e:
             return f"I encountered an error while processing your question: {str(e)}. Please try again."

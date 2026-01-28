@@ -189,7 +189,7 @@ def main():
     issues = loader.validate_data_integrity()
     
     if issues["errors"]:
-        print("❌ Errors found:")
+        print("Errors found:")
         for error in issues["errors"]:
             print(f"  • {error}")
     
@@ -199,7 +199,7 @@ def main():
             print(f"  • {warning}")
     
     if not issues["errors"] and not issues["warnings"]:
-        print("✅ Data validation passed!")
+        print("Data validation passed!")
     
     print("\n=== Data Statistics ===")
     stats = loader.get_data_statistics()

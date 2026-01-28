@@ -8,6 +8,7 @@ import logging
 from typing import Optional, Dict, List
 from dotenv import load_dotenv
 from openai import OpenAI
+from openai.types.chat import ChatCompletionMessageParam
 
 load_dotenv()
 logger = logging.getLogger(__name__)
@@ -52,12 +53,12 @@ class OpenAILLM:
             Generated text response
         """
         try:
-            messages = []
+            messages: List[ChatCompletionMessageParam] = []
             
             if system_prompt:
-                messages.append({"role": "system", "content": system_prompt})
+                messages.append({"role": "system", "content": system_prompt})  # type: ignore
             
-            messages.append({"role": "user", "content": prompt})
+            messages.append({"role": "user", "content": prompt})  # type: ignore
             
             response = self.client.chat.completions.create(
                 model=self.model,
@@ -66,7 +67,8 @@ class OpenAILLM:
                 max_tokens=max_tokens
             )
             
-            return response.choices[0].message.content
+            result = response.choices[0].message.content
+            return result if result else ""
         except Exception as e:
             logger.error(f"Error generating response from OpenAI: {e}")
             raise

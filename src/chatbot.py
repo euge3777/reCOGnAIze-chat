@@ -11,6 +11,7 @@ sys.path.append(os.path.dirname(__file__))
 
 from centrum_recommender import CentrumRecommender
 from cognitive_analyzer import CognitiveTestAnalyzer
+from file_processor import FileProcessor
 
 class MultivitaminChatbot:
     """Streamlit-based chatbot interface for Centrum product recommendations."""
@@ -37,6 +38,9 @@ class MultivitaminChatbot:
         
         if 'recommendations' not in st.session_state:
             st.session_state.recommendations = None
+        
+        if 'uploaded_files' not in st.session_state:
+            st.session_state.uploaded_files = []
     
     def render_sidebar(self):
         """Render the sidebar with test input and settings."""
@@ -202,7 +206,44 @@ class MultivitaminChatbot:
         st.session_state.analysis_results = None
         st.session_state.recommendations = None
         st.session_state.chat_history = []
+        st.session_state.uploaded_files = []
         st.rerun()
+    
+    def handle_file_uploads(self, uploaded_files):
+        """
+        Process uploaded files and store them in session state.
+        
+        Args:
+            uploaded_files: List of Streamlit UploadedFile objects
+        """
+        new_files = []
+        
+        for uploaded_file in uploaded_files:
+            # Check if file already uploaded (by filename)
+            existing_filenames = [f['filename'] for f in st.session_state.uploaded_files]
+            if uploaded_file.name not in existing_filenames:
+                file_data = FileProcessor.process_uploaded_file(uploaded_file)
+                if file_data:
+                    new_files.append(file_data)
+                    st.sidebar.success(f"Loaded: {uploaded_file.name}")
+                else:
+                    st.sidebar.error(f"✗ Failed to process: {uploaded_file.name}")
+        
+        # Add new files to session state
+        if new_files:
+            st.session_state.uploaded_files.extend(new_files)
+        
+        # Display uploaded files summary
+        if st.session_state.uploaded_files:
+            st.sidebar.markdown("**Uploaded Files:**")
+            for file_info in st.session_state.uploaded_files:
+                size_kb = file_info['size_bytes'] / 1024
+                st.sidebar.markdown(f"• {file_info['filename']} ({size_kb:.1f} KB)")
+            
+            if st.sidebar.button("Clear Uploaded Files"):
+                st.session_state.uploaded_files = []
+                st.rerun()
+
     
     def render_main_interface(self):
         """Render the main chat interface."""
@@ -232,7 +273,7 @@ class MultivitaminChatbot:
                     continue
             
             if not logo_loaded:
-                st.markdown("## 🧠")  # Fallback emoji, smaller size
+                st.markdown("## Cognitive Assistant")
                 
         with col2:
             st.title("ReCOGnAIze Chatbot")
@@ -251,13 +292,36 @@ class MultivitaminChatbot:
         st.markdown("---")
         st.subheader("Ask Me About Centrum Products")
         
+        # Display uploaded files info
+        if st.session_state.uploaded_files:
+            with st.info():
+                st.write("Files loaded in context:")
+                file_list = ", ".join([f["filename"] for f in st.session_state.uploaded_files])
+                st.write(file_list)
+                st.write("These files will be included in your chat context for better, more relevant answers.")
+        
         # Display chat history
         for message in st.session_state.chat_history:
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
         
-        # Chat input
-        if prompt := st.chat_input("Ask about Centrum products, your results, or get recommendations..."):
+        # File upload and chat input
+        col1, col2 = st.columns([6, 1])
+        
+        with col2:
+            uploaded_files = st.file_uploader(
+                "Upload",
+                accept_multiple_files=True,
+                type=['txt', 'pdf', 'csv', 'json', 'xlsx', 'xls'],
+                key='file_uploader'
+            )
+            if uploaded_files:
+                self.handle_file_uploads(uploaded_files)
+        
+        with col1:
+            prompt = st.chat_input("Ask about Centrum products, your results, or get recommendations...")
+        
+        if prompt:
             # Add user message
             st.session_state.chat_history.append({"role": "user", "content": prompt})
             
@@ -415,7 +479,7 @@ class MultivitaminChatbot:
         if match_criteria:
             with st.expander("Why These Products Match You"):
                 for criterion in match_criteria:
-                    st.markdown(f"✓ {criterion}")
+                    st.markdown(f"- {criterion}")
                     
         st.markdown("---")
         st.info(recommendation.get('explanation', 'Recommendations based on your profile.'))
@@ -488,12 +552,43 @@ class MultivitaminChatbot:
             
             st.markdown("---")
     
+    def build_augmented_prompt(self, user_query: str) -> str:
+        """
+        Build an augmented prompt that includes uploaded file contents.
+        
+        Args:
+            user_query: The user's chat query
+            
+        Returns:
+            The augmented prompt with file context
+        """
+        augmented_prompt = user_query
+        
+        # Add file context if files are uploaded
+        if st.session_state.uploaded_files:
+            augmented_prompt += "\n\n" + "="*60
+            augmented_prompt += "\n[CONTEXT FROM UPLOADED FILES]\n"
+            augmented_prompt += "="*60 + "\n\n"
+            
+            for file_data in st.session_state.uploaded_files:
+                formatted_content = FileProcessor.format_file_content_for_prompt(file_data)
+                augmented_prompt += formatted_content + "\n\n"
+            
+            augmented_prompt += "="*60 + "\n"
+            augmented_prompt += "[END OF FILE CONTEXT]\n"
+            augmented_prompt += "="*60
+        
+        return augmented_prompt
+    
     def generate_response(self, query: str) -> str:
         """Generate a response to user query using Centrum recommendation system."""
         try:
+            # Build augmented prompt with file context
+            augmented_query = self.build_augmented_prompt(query)
+            
             # First check if this is a specific product question
             if any(word in query.lower() for word in ['ingredient', 'dosage', 'when to take', 'what\'s in', 'how much', 'how many', 'benefit', 'side effect']):
-                product_answer = self.centrum_system.answer_product_question(query)
+                product_answer = self.centrum_system.answer_product_question(augmented_query)
                 if "Could you specify" not in product_answer and "couldn't find" not in product_answer:
                     return product_answer
             
@@ -501,7 +596,7 @@ class MultivitaminChatbot:
             if not st.session_state.recommendations:
                 # Extract basic info from query and provide general recommendation
                 user_profile = self.extract_profile_from_query(query)
-                centrum_rec = self.centrum_system.get_recommendation(user_profile, query)
+                centrum_rec = self.centrum_system.get_recommendation(user_profile, augmented_query)
                 
                 products = centrum_rec.get('products', [])
                 if products:
@@ -916,7 +1011,7 @@ class MultivitaminChatbot:
         """Main application runner."""
         # Page configuration
         # Try to load logo for browser tab
-        tab_icon = "🧠"  # Default fallback
+        tab_icon = ""  # Default fallback, no emoji
         logo_paths = [
             os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png"),
             os.path.join(os.path.dirname(__file__), "assets", "logo.png"),
