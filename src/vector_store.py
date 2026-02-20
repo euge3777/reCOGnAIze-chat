@@ -62,6 +62,9 @@ class VectorStore:
             "vascular_health_rules.json",
             "lifestyle_rules.json",
             "sleep_rules.json",
+            "pointer_lifestyle_evidence.json",
+            "sprint_mind_evidence.json",
+            "finger_multidomain_evidence.json",
         ]
 
         documents: List[Dict[str, Any]] = []

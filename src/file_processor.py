@@ -48,45 +48,77 @@ class FileProcessor:
     
     @staticmethod
     def process_uploaded_file(uploaded_file) -> Optional[Dict]:
-        """
-        Process an uploaded Streamlit file object.
-        
-        Args:
-            uploaded_file: Streamlit UploadedFile object
-            
-        Returns:
-            Dictionary with file metadata and content, or None if processing fails
+        """Process an uploaded file object from Streamlit or FastAPI.
+
+        Supports:
+        - Streamlit's UploadedFile (has .getvalue() and .name)
+        - FastAPI's UploadFile (has .file and .filename)
         """
         try:
             if uploaded_file is None:
                 return None
-            
-            # Check file size
-            file_size = len(uploaded_file.getvalue())
+
+            # Detect file wrapper type and normalize
+            filename: str
+            file_obj = uploaded_file
+
+            # Streamlit UploadedFile
+            if hasattr(uploaded_file, "getvalue") and hasattr(uploaded_file, "name"):
+                raw_bytes = uploaded_file.getvalue()
+                file_size = len(raw_bytes)
+                filename = uploaded_file.name
+
+            # FastAPI UploadFile
+            elif hasattr(uploaded_file, "file") and hasattr(uploaded_file, "filename"):
+                filename = uploaded_file.filename  # type: ignore[assignment]
+                file_obj = uploaded_file.file      # type: ignore[assignment]
+                # Compute size without consuming the stream
+                current_pos = file_obj.tell()
+                file_obj.seek(0, os.SEEK_END)
+                file_size = file_obj.tell()
+                file_obj.seek(current_pos)
+
+            else:
+                # Fallback: best-effort for generic file-like objects
+                if hasattr(uploaded_file, "name"):
+                    filename = uploaded_file.name  # type: ignore[assignment]
+                else:
+                    filename = "uploaded_file"
+
+                try:
+                    current_pos = uploaded_file.tell()
+                    uploaded_file.seek(0, os.SEEK_END)
+                    file_size = uploaded_file.tell()
+                    uploaded_file.seek(current_pos)
+                except Exception:
+                    file_size = 0
+
+            # Enforce max size
             if file_size > FileProcessor.MAX_FILE_SIZE:
-                logger.warning(f"File {uploaded_file.name} exceeds max size ({file_size} bytes)")
+                logger.warning(f"File {filename} exceeds max size ({file_size} bytes)")
                 return None
-            
-            file_ext = Path(uploaded_file.name).suffix.lower()
-            
+
+            file_ext = Path(filename).suffix.lower()
+
             if file_ext not in FileProcessor.SUPPORTED_TYPES:
                 logger.warning(f"Unsupported file type: {file_ext}")
                 return None
-            
+
             handler_name = FileProcessor.SUPPORTED_TYPES[file_ext]
             handler = getattr(FileProcessor, handler_name)
-            
-            content = handler(uploaded_file)
-            
+
+            # Handlers expect a file-like object with read/seek
+            content = handler(file_obj)
+
             return {
-                'filename': uploaded_file.name,
+                'filename': filename,
                 'file_type': file_ext,
                 'content': content,
                 'size_bytes': file_size,
             }
-            
+
         except Exception as e:
-            logger.error(f"Error processing file {uploaded_file.name}: {str(e)}")
+            logger.error(f"Error processing file: {str(e)}")
             return None
     
     @staticmethod
@@ -170,18 +202,37 @@ class FileProcessor:
         try:
             uploaded_file.seek(0)
             pdf_reader = PyPDF2.PdfReader(uploaded_file)
-            
+
             text_content = ""
             # Read all pages so that downstream summarization
             # has access to the full report content.
             num_pages = len(pdf_reader.pages)
-            
+
             for page_num in range(num_pages):
                 page = pdf_reader.pages[page_num]
+                page_text = page.extract_text() or ""
                 text_content += f"\n--- Page {page_num + 1} ---\n"
-                text_content += page.extract_text()
+                text_content += page_text
 
             text_content = text_content.strip()
+
+            # If PyPDF2 couldn't extract meaningful text (e.g. scanned PDF),
+            # fall back to OpenAI vision-based OCR.
+            if len(text_content.replace("-", "").strip()) < 200:
+                try:
+                    # Imported as a top-level module because backend_app adds src/ to sys.path
+                    from pdf_vision_extractor import extract_text_from_pdf_with_vision
+
+                    uploaded_file.seek(0)
+                    pdf_bytes = uploaded_file.read()
+                    # Use a generous page limit so we effectively cover the
+                    # entire ReCOGnAIze report while still having a hard cap
+                    # to avoid pathological huge PDFs.
+                    ocr_text = extract_text_from_pdf_with_vision(pdf_bytes, max_pages=50)
+                    if ocr_text:
+                        text_content = ocr_text.strip()
+                except Exception as ocr_err:
+                    logger.error(f"Vision OCR fallback failed: {ocr_err}")
 
             # More generous safeguard on length for internal
             # processing; the chat prompt will use a separate

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "sprint_mind_overview",
+    "title": "SPRINT MIND trial: intensive blood pressure control and cognitive outcomes",
+    "population": "Older adults (mostly 50+ years) with hypertension at elevated cardiovascular risk but without baseline dementia.",
+    "intervention": "Intensive systolic blood pressure target (around 120 mm Hg) using antihypertensive medications in a structured protocol.",
+    "comparison": "Standard systolic blood pressure target (around 140 mm Hg) with usual-care style medication adjustment.",
+    "primary_cognitive_outcomes": [
+      "Incidence of probable dementia (trial underpowered due to early stopping).",
+      "Incidence of mild cognitive impairment (MCI).",
+      "Combined outcome of MCI or probable dementia."
+    ],
+    "key_findings": [
+      "Intensive blood pressure control reduced risk of developing mild cognitive impairment compared with standard control over the follow-up period.",
+      "The combined outcome of MCI or probable dementia was also lower in the intensive-treatment group, supporting the idea that aggressive vascular risk management can protect cognition.",
+      "The trial was stopped early for cardiovascular benefit, so the dementia endpoint alone was underpowered; results for dementia specifically were suggestive but not definitive.",
+      "Overall, the data support a link between tighter blood pressure control and reduced risk of later-life cognitive decline in people with hypertension."
+    ],
+    "clinical_context": [
+      "SPRINT MIND builds on the broader SPRINT trial, which showed cardiovascular benefit from intensive blood pressure lowering.",
+      "In SPRINT MIND, similar intensive targets appeared to confer added protection for brain health, particularly against developing MCI.",
+      "Participants were closely monitored and treated in a trial setting; real-world application requires individualization based on age, comorbidities, and tolerance of intensive therapy."
+    ],
+    "practical_implications": [
+      "For people with high blood pressure, working with a clinician to reach guideline-based targets can reduce both heart and brain risks.",
+      "Intensive blood pressure management may be especially relevant for patients with vascular risk factors who are worried about future cognitive decline.",
+      "In counseling, it is reasonable to say that keeping systolic blood pressure closer to modern guideline targets is one of the most evidence-supported strategies for protecting both heart and brain.",
+      "Decisions about how aggressive to be should always be individualized, considering falls, kidney function, medication side effects, and patient preferences.",
+      "Lifestyle changes (diet such as DASH/MIND, physical activity, weight management, limiting alcohol, and avoiding tobacco) often make it easier to reach safer blood pressure ranges with fewer medications." 
+    ],
+    "example_counseling_lines": [
+      "\"Large blood pressure trials suggest that aiming for healthier systolic levels not only protects your heart but can also lower your risk of developing mild cognitive problems later on.\"",
+      "\"Because your blood vessels in the brain and heart are connected, controlling blood pressure is one of the clearest ways we know to reduce vascular contributions to cognitive decline.\"",
+      "\"We would tailor any blood pressure plan to your overall health, but the general message from SPRINT MIND is that safer, well-controlled blood pressure is good for your thinking as well as your heart.\""
+    ],
+    "citation_note": "High-level summary based on the SPRINT MIND cognitive outcomes trial (Williamson et al., 2019, JAMA)."
+  }
+]

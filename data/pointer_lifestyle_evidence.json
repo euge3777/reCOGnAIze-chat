@@ -1,0 +1,40 @@
+[
+  {
+    "id": "us_pointer_overview",
+    "title": "US POINTER multidomain lifestyle trial (JAMA 2025)",
+    "population": "2111 adults aged 60-79 at elevated risk of cognitive decline (sedentary, suboptimal diet, plus cardiometabolic or family-history risks)",
+    "program_components": {
+      "physical_activity": "Community-based plan aiming for roughly 4 sessions per week of moderate-intensity aerobic exercise, 2 sessions per week of resistance work, and regular flexibility activities.",
+      "diet": "Coaching to follow a brain-focused version of the Mediterranean and DASH diets (MIND diet), emphasizing vegetables, whole grains, berries, nuts, and healthy fats while reducing highly processed foods.",
+      "cognitive_social": "Structured cognitive training (for example, web-based exercises) and encouragement of regular social engagement in small peer groups.",
+      "vascular_monitoring": "Scheduled review of blood pressure, cholesterol, and glucose with feedback linked to lifestyle goals.",
+      "support_structure": "Frequent group meetings with trained staff providing accountability, troubleshooting, and encouragement over 2 years."
+    },
+    "intervention": "Structured, higher-intensity lifestyle program with supervised exercise targets, MIND-style diet guidance, cognitive training, social engagement, and regular cardiovascular risk monitoring.",
+    "comparison": "Self-guided, lower-intensity lifestyle change using education materials and less frequent support meetings.",
+    "primary_outcome": "Change in a global cognitive composite score (executive function, episodic memory, processing speed) over 2 years.",
+    "key_findings": [
+      "Both structured and self-guided groups showed improvement in global cognition over 2 years, consistent with the idea that lifestyle change in general is helpful.",
+      "The structured, higher-intensity intervention led to a modest but statistically reliable extra gain in global cognition compared with the self-guided approach (on the order of a few hundredths of a standard deviation per year).",
+      "Executive function and processing speed contributed most to the difference between groups, suggesting these domains are especially responsive to combined exercise, diet, and risk-factor management.",
+      "Benefits were seen across people with and without APOE ε4 and across cardiovascular risk groups, indicating that lifestyle strategies can help even in individuals at higher underlying risk.",
+      "Participants starting with somewhat lower baseline cognitive scores appeared to gain more from the structured program than those who began with higher scores.",
+      "Adherence to the structured program was high, and serious safety events were not increased compared with the self-guided group, supporting the feasibility and safety of this approach in older adults."
+    ],
+    "practical_implications": [
+      "For counseling: it is reasonable to tell patients that a well-supported, multi-component lifestyle program can slow cognitive decline or even improve scores in at-risk older adults, particularly for thinking speed and executive skills.",
+      "Structured programs with clear weekly targets, coaching, and group support likely provide more benefit than handing out generic lifestyle advice and leaving people to implement it alone.",
+      "Key behavioral targets include: regular moderate-intensity aerobic activity, some strength work, a MIND-style diet, ongoing cognitive challenge, staying socially active, and tight management of vascular risk factors.",
+      "Effects are not limited to people with a specific genetic profile; both APOE ε4 carriers and non-carriers can benefit, which supports offering lifestyle interventions broadly.",
+      "People who already notice subtle changes in their thinking, or who have lower baseline cognitive scores, may have the most to gain from a structured lifestyle plan.",
+      "Clinicians and digital tools can safely recommend multidomain lifestyle programs as part of dementia risk reduction, while making it clear that these strategies complement (and do not replace) medical evaluation and disease-specific treatments.",
+      "When explaining expected benefits, it may help to frame the POINTER effect size as similar to other preventive interventions: small at the individual level but meaningful when applied across many people over time."
+    ],
+    "example_counseling_lines": [
+      "\"This trial showed that older adults who followed a structured program of regular exercise, brain-healthy eating, and cognitive and social engagement had slightly better cognitive outcomes than those who tried to make changes on their own.\"",
+      "\"Your brain seems to respond particularly well to the same lifestyle habits that protect your heart—moving most days, eating a MIND-style diet, and keeping blood pressure, cholesterol, and blood sugar under control.\"",
+      "\"Even if you have family history or genetic risk, this kind of multidomain program suggests there are still meaningful lifestyle levers you can pull to support your brain health.\""
+    ],
+    "citation_note": "Summary based on: Baker LD et al. US POINTER randomized clinical trial, JAMA 2025;334(8):681-691."
+  }
+]

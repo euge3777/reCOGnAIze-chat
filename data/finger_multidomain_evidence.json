@@ -1,0 +1,37 @@
+[
+  {
+    "id": "finger_overview",
+    "title": "2-year multidomain lifestyle intervention to prevent cognitive decline (FINGER-style trial)",
+    "population": "Community-dwelling older adults (typically 60–77 years) at increased risk of cognitive decline based on vascular and lifestyle risk scores but without dementia at baseline.",
+    "intervention": "Intensive multidomain program combining nutritional guidance, structured physical exercise, cognitive training, social activities, and systematic management of vascular and metabolic risk factors, delivered over about 2 years.",
+    "comparison": "Regular health advice and usual care without the same level of structured coaching, training, and monitoring.",
+    "primary_outcome": "Change in a comprehensive cognitive performance composite (covering memory, executive function, and processing speed) over 2 years.",
+    "key_findings": [
+      "Participants in the multidomain intervention group showed better preservation or improvement of overall cognitive performance compared with the control group over the 2-year period.",
+      "The largest relative benefits were often observed in executive function and processing speed, cognitive domains strongly linked to vascular and lifestyle risk factors.",
+      "The program was feasible to deliver at scale, with good adherence to the main components (diet, exercise, cognitive training, and vascular risk monitoring).",
+      "The trial provided one of the first large randomized pieces of evidence that combining several lifestyle and vascular risk interventions can slow cognitive decline in at-risk, but largely non-demented, older adults.",
+      "Benefits were seen even though participants were already living in settings with reasonable access to usual medical care, suggesting added value beyond routine health advice alone."
+    ],
+    "program_components": {
+      "diet": "Individual and group sessions promoting a Nordic-Mediterranean style diet rich in vegetables, whole grains, berries, fish, and healthy fats, while limiting sugar and saturated fat.",
+      "exercise": "Supervised and home-based aerobic and strength-training sessions tailored to participants' fitness levels, with progressive goals.",
+      "cognitive_training": "Computer-based cognitive exercises several times per week targeting memory, processing speed, and executive skills.",
+      "social_engagement": "Group meetings and activities designed to encourage social connection and peer support.",
+      "vascular_risk_management": "Regular monitoring and optimization of blood pressure, cholesterol, weight, and glucose, in collaboration with primary care."
+    },
+    "practical_implications": [
+      "Multidomain intervention trials like this support recommending a combined approach—diet, exercise, cognitive training, social engagement, and vascular risk control—rather than focusing on a single behavior in isolation.",
+      "For patients at increased risk of dementia, a structured program with clear goals and follow-up can produce measurable cognitive benefits over a few years, especially in thinking speed and executive abilities.",
+      "These results complement other multidomain trials (such as US POINTER) and strengthen the message that lifestyle and vascular risk management are worthwhile targets for brain health, not just heart health.",
+      "Clinicians and digital tools can use this evidence to justify recommending comprehensive lifestyle plans as part of dementia risk reduction, while reminding patients that benefits are modest but meaningful when sustained over time.",
+      "Individuals who engage consistently with several components—moving regularly, following a brain-healthy diet, training their cognition, staying socially active, and managing blood pressure and cholesterol—are most likely to experience benefit."
+    ],
+    "example_counseling_lines": [
+      "\"Large trials where older adults changed several habits at once—diet, exercise, mental training, and blood pressure control—showed that this kind of combined approach can help keep thinking skills more stable over a couple of years.\"",
+      "\"Rather than looking for a single magic bullet, the evidence suggests that a package of small, sustained lifestyle changes can nudge your brain health in a better direction.\"",
+      "\"Programs modelled on this multidomain approach are a good template for the kind of plan we’re building for you: move more, eat for brain and heart health, challenge your mind, stay socially connected, and keep vascular risk factors well controlled.\""
+    ],
+    "citation_note": "High-level summary inspired by the 2-year multidomain FINGER-style lifestyle intervention trial in older adults at risk for cognitive decline."
+  }
+]
