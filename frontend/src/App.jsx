@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 
-const API_BASE = 'http://localhost:8000'
+const API_BASE = 'https://recognaize-chat.onrender.com'
 
 function App() {
   const [message, setMessage] = useState('')
@@ -271,7 +271,7 @@ function App() {
         <div className="chat-header">
           <div className="header-content">
             <div className="bot-avatar">
-              <img src="/assets/logo.png" alt="ReCOGnAIze Assistant logo" />
+              <img src="/assets/logo.png" alt="Cognitive Assistant logo" />
             </div>
             <div className="bot-name"> ReCOGnAIze Assistant</div>
             <div className="bot-status">
