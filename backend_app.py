@@ -2,7 +2,7 @@ import os
 import sys
 from typing import List, Dict, Any, Optional
 
-from fastapi import FastAPI, UploadFile, File, Form
+from fastapi import FastAPI, UploadFile, File, Form, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -33,15 +33,10 @@ class ChatResponse(BaseModel):
 
 app = FastAPI(title="ReCOGnAIze Backend API")
 
-# Allow local React dev server by default
-origins = [
-    "http://localhost:3000",
-    "http://localhost:5173",
-]
-
+# CORS: allow both local dev and deployed frontends (Vercel, etc.)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # you can tighten this later by listing specific domains
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -312,6 +307,18 @@ async def chat_endpoint(payload: ChatRequest) -> ChatResponse:
     history = payload.conversation_history or []
     reply = chatbot.generate_response(payload.message, conversation_history=history)
     return ChatResponse(reply=reply)
+
+
+@app.options("/chat")
+async def chat_options() -> Response:
+    """Handle CORS preflight requests for the /chat endpoint.
+
+    Some hosting environments may not let CORSMiddleware short-circuit
+    OPTIONS requests correctly, which can cause the browser preflight
+    to get a 400 response. Returning an empty 200 response here ensures
+    the frontend can successfully POST to /chat.
+    """
+    return Response(status_code=200)
 
 
 @app.post("/upload")

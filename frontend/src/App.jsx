@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
+import logo from '../assets/logo.png'
 
 const API_BASE = 'https://recognaize-chat.onrender.com'
 
@@ -271,7 +272,7 @@ function App() {
         <div className="chat-header">
           <div className="header-content">
             <div className="bot-avatar">
-              <img src="/assets/logo.png" alt="Cognitive Assistant logo" />
+              <img src={logo} alt="Cognitive Assistant logo" />
             </div>
             <div className="bot-name"> ReCOGnAIze Assistant</div>
             <div className="bot-status">
@@ -342,7 +343,7 @@ function App() {
                 {msg.role === 'user' ? (
                   <span className="user-initial">You</span>
                 ) : (
-                  <img src="/assets/logo.png" alt="Cognitive Assistant" />
+                  <img src={logo} alt="Cognitive Assistant" />
                 )}
               </div>
               <div className="message-content">
@@ -361,7 +362,7 @@ function App() {
           {loading && (
             <div className="typing-indicator">
               <div className="message-avatar">
-                <img src="/assets/logo.png" alt="Cognitive Assistant typing" />
+                <img src={logo} alt="Cognitive Assistant typing" />
               </div>
               <div className="typing-dots">
                 <span />
